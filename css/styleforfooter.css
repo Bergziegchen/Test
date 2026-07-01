@@ -1,0 +1,439 @@
+
+
+:root {
+    /* Color Palette */
+    --n-white: #ffffff;
+    --n-black: #000000;
+    --n-gray-50: #fcfcfc;
+    --n-gray-100: #f2f2f2;
+    --n-gray-200: #e0e0e0;
+    --n-gray-300: #cccccc;
+    --n-gray-400: #999999;
+    --n-gray-600: #555555;
+    
+    /* Brand Accents */
+    --n-mint: #4ade80;
+    --n-dark-green: #0a3d1e;
+    --accent: #13a64b;
+    
+   
+    
+    /* Motion */
+    --n-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --n-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --n-transition: 0.4s var(--anim-smooth);
+}
+
+/* 1. Global Footer Base */
+.dl-footer-final {
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+    font-family: var(--font-display);
+    padding: 0;
+    position: relative;
+    border-top: 1px solid var(--clr-border);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Top & Bottom Dividers */
+.footer-line-top, 
+.footer-line-bottom {
+    width: 100%;
+    height: 1px;
+    background-color: var(--clr-border);
+    position: relative;
+    z-index: 5;
+}
+
+/* 3. The Master Grid */
+.footer-main-wrapper {
+    max-width: 1700px;
+    margin: 0 auto;
+    display: grid;
+    /* 2.5 Teile für Brand, Rest gleichmäßig */
+    grid-template-columns: 2.5fr 1fr 1fr 1fr;
+    padding: 160px 80px;
+}
+
+/* 4. Section Logic with Vertical Borders */
+.footer-section {
+    padding: 0 60px;
+    border-left: 1px solid var(--clr-border);
+    transition: border-color var(--anim-smooth);
+}
+
+.footer-section:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+
+.footer-section:hover {
+    border-left-color: var(--clr-primary);
+}
+
+/* 5. BRAND IDENTITY (Column 1) */
+.brand-logo {
+    font-size: 52px; 
+    font-weight: 900;
+    letter-spacing: -3px;
+    color: var(--clr-primary);
+    margin: 0 0 40px 0;
+    line-height: 0.85;
+    text-transform: none;
+}
+
+.type-label {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: var(--clr-text-muted);
+}
+
+.brand-vision p {
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--clr-text-muted);
+    max-width: 540px;
+    margin-bottom: 60px;
+    font-weight: 400;
+}
+
+.brand-meta {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--clr-primary);
+    letter-spacing: 2px;
+}
+
+.meta-divider {
+    width: 80px;
+    height: 2px;
+    background-color: var(--clr-primary);
+}
+
+/* 6. SECTION HEADERS WITH LINE ANIMATION */
+.section-title {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: var(--clr-text-muted);
+    margin-bottom: 60px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+    display: block;
+}
+
+/* Die dicke Linie unter den Kategorien schießt von links ein */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--clr-border);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--anim-smooth);
+}
+
+.footer-section:hover .section-title::after {
+    transform: scaleX(1);
+    background-color: var(--clr-primary);
+}
+
+/* 7. LINK LISTS (No lines, just color shift) */
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-list li {
+    margin-bottom: 20px;
+}
+
+.link-list a {
+    text-decoration: none;
+    color: var(--clr-black);
+    font-size: 20px;
+    font-weight: 600;
+    transition: color 0.3s var(--anim-smooth), transform 0.3s var(--anim-smooth);
+    display: inline-block;
+}
+
+.link-list a:hover {
+    color: var(--clr-primary);
+    transform: translateX(8px); /* Dezenter Slide-Effekt ohne Linie */
+}
+
+/* 8. CONTACT INFO */
+.address {
+    font-style: normal;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--clr-text-muted);
+    margin-bottom: 40px;
+}
+
+.actions a {
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--clr-primary);
+    display: block;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+    white-space: nowrap;
+}
+
+.actions a:hover {
+    color: var(--clr-primary);
+}
+
+/* 9. THE FOOTER BOTTOM & My SIGNATURE */
+.footer-bottom-area {
+    max-width: 1700px;
+    height: clamp(2rem, 3rem, 6rem);
+    margin: 0 auto;
+    padding: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bottom-left p {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--clr-text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* MADE BY Struß - THE MASSIVE FINALE */
+.creator-tag {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    color: var(--clr-text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.creator-tag strong {
+    font-size: 40px; /* Noch größer & fetter */
+    font-weight: 950;
+    color: var(--clr-black);
+    letter-spacing: -5px;
+    line-height: 0.8;
+    position: relative;
+    padding: 0px 0;
+    transition: all 0.5s var(--anim-smooth);
+    display: block;
+}
+
+
+.creator-tag strong::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px; /* Brutal dick */
+    background-color: var(--clr-primary);
+    transform: scaleX(0.05);
+    transform-origin: right;
+    transition: transform 0.7s var(--anim-smooth);
+}
+
+.creator-tag:hover strong {
+    transform: scale(1.15) translateY(-10px);
+    color: var(--clr-primary);
+}
+
+.creator-tag:hover strong::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* 10. RESPONSIVE MASTER GRID */
+
+@media (max-width: 1440px) {
+    .footer-main-wrapper { padding: 120px 60px; }
+    .brand-logo { font-size: 44px; }
+    .creator-tag strong { font-size: 40px; }
+}
+
+@media (max-width: 1100px) {
+    .footer-main-wrapper {
+        grid-template-columns: 1.5fr 1fr;
+        padding: 80px 40px;
+    }
+    .footer-section {
+        border-left: none;
+        border-bottom: 1px solid var(--clr-border);
+        padding: 40px 0;
+    }
+    .footer-section:hover {
+        border-bottom-color: var(--clr-primary);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main-wrapper {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+    }
+    .footer-bottom-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 60px;
+        text-align: center;
+    }
+    .creator-tag { align-items: center; }
+    .creator-tag strong { font-size: 20px; letter-spacing: -2px; }
+}
+
+/* 11. EXTRA POLISH (UTILITIES) */
+
+/* Selection Colors */
+::selection {
+    background-color: var(--clr-primary);
+    color: var(--clr-primary);
+}
+
+/* Hide Horizontal Scroll */
+body { overflow-x: hidden; }
+
+/* Custom Scrollbar for the site */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--clr-white); }
+::-webkit-scrollbar-thumb { background: var(--clr-border); border: 2px solid var(--clr-white); }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-primary); }
+
+/* Fade-In Entrance for Sections */
+@keyframes sectionEnter {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-section {
+    animation: sectionEnter 0.8s var(--anim-smooth) both;
+}
+
+.footer-section:nth-child(1) { animation-delay: 0.1s; }
+.footer-section:nth-child(2) { animation-delay: 0.2s; }
+.footer-section:nth-child(3) { animation-delay: 0.3s; }
+.footer-section:nth-child(4) { animation-delay: 0.4s; }
+
+
+
+/* MOBILE & TABLET OPTIMIZATION (CENTERING)
+   Target: Screens smaller than 1024px
+*/
+
+@media (max-width: 767px) {
+    /* 1. Haupt-Grid auf einspaltig umstellen */
+    .footer-main-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    /* 2. Sektionen zentrieren und Abstände anpassen */
+    .footer-section {
+        border-left: none;
+        border-bottom: 1px solid var(--clr-border);
+        padding: 60px 0;
+        align-items: center; /* Zentriert Flex-Inhalte */
+    }
+
+    .footer-section:last-child {
+        border-bottom: none;
+    }
+
+    /* 3. Brand-Spezifika zentrieren */
+    .brand-vision p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .brand-meta {
+        justify-content: center;
+    }
+
+    /* 4. Listen und Links zentrieren */
+    .link-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .link-list a:hover {
+        transform: scale(1.1); 
+    }
+
+   
+    .section-title {
+        display: inline-block;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section-title::after {
+        transform-origin: center; 
+    }
+
+    /* 6. Kontakt & Actions */
+    .contact-info .actions {
+        align-items: center;
+    }
+
+    /* 7. Bottom Area & My Signature */
+    .footer-bottom-area {
+        flex-direction: column-reverse;
+        gap: 40px;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .footer-line-bottom{
+        margin-bottom: 5rem;
+    }
+
+    .creator-tag {
+        align-items: center;
+    }
+    .creator-tag{
+        font-size: 15px;
+    }
+    .creator-tag strong {
+        font-size: 30px; /* Etwas kleiner für Mobile, aber immer noch massiv */
+        letter-spacing: -2px;
+    }
+
+    .creator-tag strong::after {
+        transform-origin: center; /* Deine Signatur-Linie wächst auch mittig */
+    }
+    
+    /* Hintergrund-Wasserzeichen für Mobile ausblenden oder verkleinern */
+    .dl-footer-final::before {
+        font-size: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        opacity: 0.1;
+    }
+}
+
+
+

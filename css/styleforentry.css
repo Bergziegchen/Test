@@ -1,0 +1,143 @@
+
+
+/* Hero Section Styling */
+.hero-section {
+  background-color: var(--clr-white);
+  /* Berücksichtigt die Header-Höhe, damit nichts verdeckt wird */
+  padding: calc(var(--header-h) + 40px) var(--side-padding) 80px var(--side-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  margin-bottom: none;
+}
+
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Ab Desktop zweispaltig */
+@media (min-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+/* Text-Inhalte */
+.hero-badge {
+  display: inline-block;
+  background-color: var(--clr-hover-bg);
+  color: var(--clr-primary);
+  border: 1px solid var(--clr-border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: var(--fw-nav);
+  letter-spacing: var(--ls-nav);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Skaliert flüssig zwischen Mobile und Desktop */
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--clr-text-main);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.hero-title .highlight {
+  color: var(--clr-primary);
+  position: relative;
+}
+
+/* Optionaler cooler Effekt: Eine dicke Linie unter dem Highlight-Text, passend zu deiner --line-weight */
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: var(--line-weight);
+  background-color: var(--clr-primary);
+  border-radius: 2px;
+  opacity: 0.3;
+}
+
+.hero-description {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--clr-text-muted);
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+/* Buttons */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 16px 32px;
+  border-radius: 4px;
+  font-weight: var(--fw-nav);
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all var(--anim-smooth);
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  border: 2px solid var(--clr-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-black);
+  border-color: var(--clr-black);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--clr-text-main);
+  border: 2px solid var(--clr-black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--clr-hover-bg);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  transform: translateY(-3px);
+}
+
+/* Bild / Mockup Spalte */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.08);
+  transition: transform var(--anim-smooth);
+}
+
+.hero-image:hover .responsive-img {
+  transform: scale(1.02);
+}

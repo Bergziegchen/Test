@@ -1,0 +1,433 @@
+
+
+
+/* ==========================================
+   ACCESSIBLE FAQ SECTION WITH MARKEN-ROOT
+   ========================================== */
+
+
+#faqsection {
+    width: 100%;
+    background-color: var(--clr-white);
+    color: var(--clr-text-main);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.faq-container {
+    max-width: 850px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Neue, kombinierte Überschrift oben */
+.faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-header h2 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--clr-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.faqwrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Items */
+.faqwrapper .item {
+    background: transparent;
+    border-bottom: 2px solid var(--clr-border);
+    transition: all var(--anim-fast);
+}
+
+.faqwrapper .item:nth-child(1) {
+    border-top: 2px solid var(--clr-border);
+}
+
+/* Klickbarer Frage-Button (Etwas größerer Text!) */
+.faq-question {
+    width: 100%;
+    padding: 26px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--clr-text-main);
+    font-size: 1.35rem; /* Textgröße der Fragen erhöht */
+    font-weight: 700;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color var(--anim-fast), color var(--anim-fast);
+    gap: 20px;
+}
+
+.faq-question:hover {
+    background-color: var(--clr-hover-bg);
+    color: var(--clr-primary);
+}
+
+/* Deutlicher Tastatur-Fokusrahmen für Barrierefreiheit */
+.faq-question:focus-visible {
+    outline: 3px solid var(--clr-primary);
+    outline-offset: -3px;
+    background-color: var(--clr-hover-bg);
+}
+
+/* Plus/Minus Icon */
+.faqwrapper .icon {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border-radius: 50%;
+    border: 2px solid var(--clr-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--anim-smooth);
+    flex-shrink: 0;
+}
+
+.faqwrapper .icon::before,
+.faqwrapper .icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--clr-primary);
+    border-radius: 20px;
+    transition: all var(--anim-smooth);
+}
+
+.faqwrapper .icon::before { width: 14px; height: 2px; }
+.faqwrapper .icon::after { width: 2px; height: 14px; }
+
+/* Aktiv-Zustände gekoppelt an .item.active */
+.faqwrapper .item.active .icon {
+    transform: rotate(180deg);
+    background: var(--clr-primary);
+    border-color: var(--clr-primary);
+}
+
+.faqwrapper .item.active .icon::before { background-color: var(--clr-white); }
+.faqwrapper .item.active .icon::after { 
+    opacity: 0; 
+    transform: rotate(180deg) scale(0); 
+}
+
+/* Antwort-Bereich */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--anim-smooth), opacity var(--anim-fast);
+    opacity: 0;
+    padding: 0 20px;
+}
+
+.faqwrapper .item.active .faq-answer {
+    opacity: 1;
+}
+
+.faq-answer p {
+    padding-bottom: 26px;
+    color: var(--clr-text-muted);
+    line-height: 1.65;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Mobile Anpassungen */
+@media (max-width: 650px) {
+    .faq-question {
+        padding: 22px 10px;
+        font-size: 1.15rem;
+    }
+    .faq-answer {
+        padding: 0 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   PORTFOLIO SHOWCASE SLIDER STYLING
+   ========================================== */
+
+.portfolio-showcase {
+    position: relative;
+    width: 100%;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    background-color: var(--clr-white);
+}
+
+.portfolio-showcase:active {
+    cursor: grabbing;
+}
+
+/* Verhindert, dass Bilder im Slider den Drag-Vorgang stören */
+.portfolio-showcase img {
+    pointer-events: none;
+}
+
+.showcase-track {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showcase-slide {
+    position: absolute;
+    --card-width: 75%;
+    width: var(--card-width);
+    height: 380px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    will-change: transform, filter;
+    transition: transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.9s ease, opacity 0.9s ease;
+    z-index: calc(100 - var(--dist));
+    transform: translateX(calc(var(--i) * 45%)) scale(calc(1 - var(--dist) * 0.15));
+    filter: blur(calc(var(--dist) * 2px)) brightness(calc(1 - var(--dist) * 0.08));
+}
+
+.showcase-slide.state-active {
+    z-index: 150;
+    filter: blur(0) brightness(1);
+    transform: translateX(0) scale(1.15);
+}
+
+.slide-media-frame {
+    width: 100%;
+    height: 100%;
+    background-image: var(--url);
+    background-size: cover;
+    background-position: center;
+    border-radius: 24px;
+}
+
+.slide-content-box {
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(255,255,255,0.8) 40%);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.slider-indicator-bar {
+    display: flex;
+    gap: 12px;
+    margin: 50px 0;
+    z-index: 100;
+}
+
+.indicator-bullet {
+    width: 10px;
+    height: 10px;
+    background: #bdc3c7;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+}
+
+.indicator-bullet.state-active {
+    background: #007bff;
+    transform: scale(1.4);
+}
+
+.slider-control-group {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.slider-control-group button {
+    pointer-events: all;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctrl-btn-backward::before { content: '❮'; }
+.ctrl-btn-forward::before { content: '❯'; }
+
+/* --- RESPONSIVE ANPASSUNGEN --- */
+
+@media (max-width: 767px) {
+    .portfolio-showcase { height: 550px; }
+    .showcase-track { height: 320px; }
+    .showcase-slide { --card-width: 60%; height: 280px; }
+    .slider-indicator-bar { margin-bottom: 80px; }
+    .slider-control-group { top: auto; bottom: 20px; transform: none; padding: 0 15px; }
+}
+
+@media (min-width: 768px) {
+    .showcase-slide { --card-width: 350px; }
+    .slider-control-group { top: 50%; transform: translateY(-50%); padding: 0 40px; }
+}
+
+/* ------------------------------------------- */
+/* --- Die Inhalts-Box (Die Karte selbst) --- */
+.slide-content-box {
+    background: var(--clr-white);
+    border: 1px solid var(--clr-border);
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    box-sizing: border-box; 
+    position: relative;
+    
+    /* WICHTIG: Verhindert, dass Inhalte oder Ränder unten herausstehen */
+    overflow: hidden; 
+    
+    transition: background-color var(--anim-smooth), border-color var(--anim-smooth), box-shadow var(--anim-smooth);
+}
+
+/* Sicherer Hover-Effekt ohne Positionsänderung */
+@media (hover: hover) {
+    .slide-content-box:hover {
+        background-color: var(--clr-hover-bg);
+        border-color: var(--clr-primary);
+        /* Ein satterer Schatten nach unten simuliert die Tiefe, ohne die Box zu verschieben */
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); 
+    }
+
+    /* Der Link bewegt sich trotzdem leicht als edler Indikator */
+    .slide-content-box:hover .card-link {
+        transform: translateX(4px);
+    }
+}
+/* --- Innere Elemente --- */
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--clr-primary);
+    flex-shrink: 0;
+    display: inline-block;
+}
+
+.slide-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--clr-black);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    
+    /* Verhindert Layout-Sprengung durch zu lange Wörter */
+    overflow-wrap: anywhere;
+    hyphens: auto; 
+}
+
+.slide-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--clr-text-muted);
+    margin: 0;
+    flex-grow: 1; 
+    overflow-wrap: anywhere;
+}
+
+.card-link {
+    font-size: 0.95rem;
+    font-weight: var(--fw-nav);
+    letter-spacing: var(--ls-nav);
+    color: var(--clr-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: transform var(--anim-fast), color var(--anim-fast);
+    white-space: normal; 
+    overflow-wrap: anywhere;
+}
+
+/* --- Responsive Optimierung für Smartphones --- */
+@media (max-width: 500px) {
+    .slide-content-box {
+        padding: 1.5rem 1rem; /* Padding weiter reduziert für extrem kleine Displays */
+        gap: 0.75rem;
+    }
+    
+    .slide-title {
+        font-size: 1.25rem; 
+    }
+
+    .slide-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}
