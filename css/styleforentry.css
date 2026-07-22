@@ -1,0 +1,170 @@
+/* Hero Section Styling */
+.hero-section {
+  background-color: var(--clr-white);
+  /* padding-top berücksichtigt die Header-Höhe */
+  padding: calc(var(--header-h) + 40px) var(--side-padding) 80px var(--side-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  margin-bottom: 0; /* "none" ist kein gültiger Wert für margin, geändert zu 0 */
+  overflow: hidden; /* Verhindert, dass herausschwebende Elemente Scrollbars erzeugen */
+}
+
+.hero-container {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px; /* Auf Mobile etwas kleinerer Abstand zwischen Text und Bild */
+  align-items: center;
+}
+
+/* Ab Desktop zweispaltig */
+@media (min-width: 992px) {
+  .hero-container {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px; /* Größerer Abstand nur auf Desktop */
+  }
+}
+
+/* Text-Inhalte */
+.hero-badge {
+  display: inline-block;
+  background-color: var(--clr-hover-bg);
+  color: var(--clr-primary);
+  border: 1px solid var(--clr-border);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: var(--fw-nav);
+  letter-spacing: var(--ls-nav);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  /* Startet auf Mobile bei 2rem statt 2.5rem, damit lange Wörter nicht herausragen */
+  font-size: clamp(2rem, 6vw, 4rem); 
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--clr-text-main);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  word-wrap: break-word; /* Verhindert, dass extrem lange Wörter das Layout sprengen */
+}
+
+.hero-title .highlight {
+  color: var(--clr-primary);
+  position: relative;
+}
+
+/* Unterlinie unter dem Highlight-Text */
+.hero-title .highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: var(--line-weight);
+  background-color: var(--clr-primary);
+  border-radius: 2px;
+  opacity: 0.3;
+}
+
+.hero-description {
+  /* Etwas kleinere mobile Schriftgröße als Einstieg */
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--clr-text-muted);
+  margin-bottom: 32px; /* Auf Mobile leicht reduziert */
+  max-width: 600px;
+}
+
+/* Buttons */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 28px; /* Leicht reduziertes Padding für bessere mobile Darstellung */
+  border-radius: 4px;
+  font-weight: var(--fw-nav);
+  font-size: 1rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all var(--anim-smooth);
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  border: 2px solid var(--clr-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--clr-black);
+  border-color: var(--clr-black);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--clr-text-main);
+  border: 2px solid var(--clr-black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--clr-hover-bg);
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  transform: translateY(-3px);
+}
+
+/* Bild / Mockup Spalte */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Verhindert ungewollten Overflow des Bild-Containers */
+}
+
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Verhindert kleine Whitespace-Abstände unter dem Bild */
+  border-radius: 8px;
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.08);
+  transition: transform var(--anim-smooth);
+}
+
+.hero-image:hover .responsive-img {
+  transform: scale(1.02);
+}
+
+/* --- ZUSÄTZLICHE MEDIA QUERIES FÜR MOBILE GERÄTE --- */
+
+@media (max-width: 576px) {
+  .hero-section {
+    /* Reduziert das seitliche Padding auf kleinen Handys, falls --side-padding dort zu groß ist */
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .hero-actions {
+    flex-direction: column; /* Buttons auf sehr kleinen Displays untereinander stapeln */
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%; /* Macht die Buttons auf dem Handy vollflächig klickbar */
+  }
+}
+
+
+

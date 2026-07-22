@@ -1,0 +1,527 @@
+/* ==========================================================================
+   Komplett neues, modernes Kontaktformular-Design
+   ========================================================================== */
+#Kontaktsektion {
+    background-color: white;
+}
+
+/* ==========================================================================
+   Kontakt-Info (Hochkant-Card basierend auf :root)
+   ========================================================================== */
+
+.kontakt-info {
+    background-color: var(--clr-white);
+    border: 1px solid var(--clr-border);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    
+    /* Hochkant-Layout (Vertikale Ausrichtung) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert Bild, Überschrift & Text */
+    text-align: center;   /* Richtet den Text mittig aus */
+    
+    gap: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: border-color var(--anim-fast), transform var(--anim-smooth);
+}
+
+
+/* Profilfoto (Zentriert oben) */
+.kontakt-info .profil-wrapper {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--clr-primary);
+    box-shadow: 0 8px 20px rgba(79, 139, 105, 0.2);
+    margin-bottom: 0.5rem;
+}
+
+.kontakt-info .profil-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Überschrift & Einleitungstext */
+.kontakt-info h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--clr-text-main);
+    letter-spacing: -0.01em;
+}
+
+.kontakt-info .intro-text {
+    color: var(--clr-text-muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+    max-width: 300px; /* Hält die Zeilenlänge für gute Lesbarkeit kompakt */
+}
+
+/* Kontaktdaten-Liste */
+.kontakt-info .info-liste {
+    list-style: none;
+    padding: 1.5rem 0 0 0;
+    margin: 0.5rem 0 0 0;
+    width: 100%; /* Dehnt die Liste auf volle Card-Breite */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    
+    border-top: 1px solid var(--clr-border);
+}
+
+.kontakt-info .info-liste li {
+    font-size: 0.95rem;
+    color: var(--clr-text-main);
+    line-height: 1.4;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    
+    /* Text innerhalb der Liste linksbündig für bessere Lesbarkeit */
+    text-align: left; 
+    display: flex;
+    justify-content: space-between;
+    
+    transition: background-color var(--anim-fast);
+}
+
+/* Hover-Effekt auf Listenelementen */
+.kontakt-info .info-liste li:hover {
+    background-color: var(--clr-hover-bg);
+}
+
+.kontakt-info .info-liste strong {
+    color: var(--clr-primary);
+    font-weight: 600;
+}
+/* ==========================================================================
+   Layout-Container (Card links, Formular rechts)
+   ========================================================================== */
+
+.kontakt-container {
+    display: grid;
+    /* Ergibt ein 2-Spalten-Layout: Card (1 Fr) + Formular (2 Fr) */
+    grid-template-columns: 1fr 2fr; 
+    gap: 2.5rem;
+    align-items: start; /* Richtet beide Elemente oben bündig aus */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* ==========================================================================
+   Anpassungen für die Card & Formular-Verteilung
+   ========================================================================== */
+
+.kontakt-info {
+    /* Setzt die Card fest in den Container-Fluss */
+    width: 100%;
+}
+
+#Kontaktformular {
+    background-color: var(--clr-white);
+    border: 1px solid var(--clr-border);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   Responsive Design (Mobil-Optimierung)
+   ========================================================================== */
+
+@media (max-width: 850px) {
+    .kontakt-container {
+        /* Bricht auf Smartphones/Tablets in eine Spalte um */
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+#Kontaktformular {
+    /* Breite und Margin an die Info-Card anpassen: */
+    width: 100%; 
+    margin: 0;
+
+    padding: 3rem;
+    box-sizing: border-box;
+    background-color: var(--clr-white);
+    border-radius: 20px;
+   
+    
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.), 0 5px 15px rgba(0, 0, 0, 0.03);
+    border: 5px solid var(--clr-primary)
+}
+
+#kontakt-heading {
+    color: var(--clr-text-main);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    text-align: center; /* Überschrift zentrieren */
+    letter-spacing: -0.02em;
+}
+
+#kontaktForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem; /* Mehr Abstand zwischen den Feldern */
+}
+
+/* --- 2. Neue Formular-Gruppen (für Floating Labels) --- */
+.group {
+    position: relative; /* Wichtig für Positionierung des Labels */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Das Label (wird standardmäßig über den Input gelegt) */
+.group label {
+    color: var(--clr-text-muted);
+    font-weight: 500;
+    font-size: 1rem;
+    position: absolute;
+    left: 1.2rem;
+    top: 1rem;
+    padding: 0 0.25rem;
+    background-color: transparent;
+    pointer-events: none; /* Klicks gehen durch das Label hindurch */
+    transition: all var(--anim-smooth); /* Nutzt deine smooth Animation */
+    z-index: 1;
+}
+
+/* Sternchen für Pflichtfelder */
+.group label span[aria-hidden="true"] {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+/* Ausnahme: Label für Checkbox und Captcha nicht absolut positionieren */
+.privacy-group label,
+label[for="captcha_input"] {
+    position: static;
+    pointer-events: auto;
+    padding: 0;
+    color: var(--clr-text-main);
+}
+
+/* --- 3. Inputs & Textarea im neuen Look --- */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 1.2rem 1.2rem; /* Mehr Padding */
+    background-color: #fbfbfb; /* Ganz leichtes Grau */
+    border: 1px solid #e8e8e8; /* Hellerer Rand */
+    border-radius: 12px; /* Runder */
+    color: var(--clr-text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: all var(--anim-fast);
+    
+    /* Subtiler Innenschatten für Tiefe */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+/* Hover-Effekt für Inputs */
+input:hover,
+textarea:hover {
+    border-color: #d0d0d0;
+    background-color: var(--clr-white);
+}
+
+/* --- 4. Floating Label Magie --- */
+
+/* Wenn das Feld fokussiert ist ODER Text enthält: Label nach oben bewegen */
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label,
+textarea:focus ~ label,
+textarea:not(:placeholder-shown) ~ label {
+    top: -0.6rem;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--clr-primary);
+    background-color: var(--clr-white); /* Label überdeckt den Rand */
+    font-weight: 600;
+}
+
+/* Fokus-Zustand des Inputs selbst */
+input:focus,
+textarea:focus {
+    border-color: var(--clr-primary);
+    background-color: var(--clr-white);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(79, 139, 105, 0.1); /* Subtiler "Glüh"-Effekt */
+}
+
+/* --- 5. Validierungs-Feedback (Fehler) --- */
+input[aria-invalid="true"], 
+textarea[aria-invalid="true"] {
+    border-color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.03) !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1) !important;
+}
+
+/* Label-Farbe bei Fehler anpassen */
+input[aria-invalid="true"] ~ label,
+textarea[aria-invalid="true"] ~ label {
+    color: #ef4444;
+}
+
+/* --- 6. Datenschutz Checkbox & Captcha --- */
+.privacy-group {
+    flex-direction: row;
+    align-items: center; /* Zentriert Checkbox und Text vertikal */
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    position: static; /* Floating Label Logik hier deaktivieren */
+}
+
+.privacy-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #dcdcdc; /* Dickerer Rand */
+    border-radius: 6px;
+    background-color: var(--clr-white);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all var(--anim-fast);
+}
+
+.privacy-group input[type="checkbox"]:checked {
+    background-color: var(--clr-primary);
+    border-color: var(--clr-primary);
+    box-shadow: 0 2px 5px rgba(79, 139, 105, 0.3);
+}
+
+/* Optimiertes Häkchen-Symbol */
+.privacy-group input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--clr-white);
+    border-width: 0 3px 3px 0; /* Etwas dickerer Haken */
+    transform: rotate(45deg);
+}
+
+.privacy-group label {
+    font-size: 0.9rem;
+    color: var(--clr-text-muted);
+}
+
+.privacy-group a {
+    color: var(--clr-primary);
+    text-decoration: none; /* Unterstreichung standardmäßig entfernen */
+    font-weight: 500;
+}
+
+.privacy-group a:hover {
+    text-decoration: underline;
+}
+
+/* Captcha-Gruppe */
+#captchaLabel {
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+/* --- 7. Honeypot (Spam-Schutz) --- */
+.honeypot {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* --- 8. Neuer Submit-Button --- */
+#submitBtn {
+    padding: 1.1rem 2.5rem;
+    
+    /* Verlauf für modernen, plastischen Look */
+    background: linear-gradient(135deg, var(--clr-primary) 0%, #3e6d52 100%);
+    color: var(--clr-white);
+    border: none;
+    border-radius: 12px; /* Runder */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--anim-smooth);
+    align-self: center; /* Button zentrieren */
+    
+    /* Schatten für Abhebung */
+    box-shadow: 0 5px 15px rgba(79, 139, 105, 0.3);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+#submitBtn:hover {
+    /* Leichtes Anheben beim Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 139, 105, 0.4);
+    opacity: 1; /* Opacity Hover entfernen, wir nutzen Schatten */
+}
+
+#submitBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(79, 139, 105, 0.3);
+}
+
+/* --- 9. Loading-Zustand im Button --- */
+#Kontaktformular[aria-busy="true"] #submitBtn {
+    pointer-events: none;
+    color: transparent;
+    background: linear-gradient(135deg, #a0a0a0 0%, #808080 100%); /* Grauverlauf */
+    box-shadow: none;
+}
+
+#Kontaktformular[aria-busy="true"] #submitBtn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--clr-white);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- 10. Statusmeldungen --- */
+#status-message {
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#status-message:empty {
+    display: none;
+}
+
+/* --- 11. Barrierefreie Fokus-Ringe --- */
+:focus-visible {
+    outline: 3px solid var(--clr-primary) !important;
+    outline-offset: 4px;
+}
+/* --- Responsives Verhalten auf Smartphones --- */
+@media (max-width: 600px) {
+    #Kontaktformular {
+        padding: 2rem 1.25rem; /* Etwas weniger Innenabstand auf kleinen Screens */
+        margin: 2rem auto;      /* Bleibt perfekt zentriert mit Rändern */
+        border-radius: 15px;
+    }
+    
+    #submitBtn {
+        width: 100%; /* Vollbreit auf Handys */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- 1. Visuelles Feedback für Fehlfelder (Wichtig für v5.0) --- */
+input[aria-invalid="true"], 
+textarea[aria-invalid="true"] {
+    border-color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.05) !important;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* --- 2. Button Loading State (Wenn aria-busy="true") --- */
+#Kontaktformular[aria-busy="true"] button[type="submit"] {
+    pointer-events: none;
+    opacity: 0.7;
+    filter: grayscale(0.5);
+    cursor: not-allowed;
+    position: relative;
+    color: transparent; /* Text verstecken für Spinner */
+}
+
+/* Kleiner CSS-Spinner, wenn der Button lädt */
+#Kontaktformular[aria-busy="true"] button[type="submit"]::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--clr-white);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --- 3. Schärfere Checkbox-Optik --- */
+.privacy-group input[type="checkbox"]:checked {
+    background-color: var(--clr-primary);
+    border-color: var(--clr-primary);
+}
+
+/* Checkmark als weißes SVG/Border für bessere Schärfe */
+.privacy-group input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--clr-white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* --- 4. Barrierefreie Focus-Ringe (High Contrast) --- */
+:focus-visible {
+    outline: 2px solid var(--clr-primary) !important;
+    outline-offset: 4px;
+}
