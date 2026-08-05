@@ -1,0 +1,2445 @@
+
+
+
+
+
+
+
+/* ==========================================
+   PHOTOREALISTIC LAPTOP WITH SMOOTH SCROLL (LIGHT THEME)
+   ========================================== */
+
+.laptop-scroll-container {
+    height: 500vh; /* Mehr Platz für Aufklappen + langes Durchscrollen */
+    background: var(--cb-main); /* Heller, freundlicher Hintergrund */
+    position: relative;
+}
+
+.sticky-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* --- 3D SCENE CONTAINER --- */
+.laptop-scene {
+    perspective: 2000px;
+    perspective-origin: 50% 80%;
+    width: clamp(280px, 75vw, 980px);
+    will-change: transform;
+    pointer-events: auto;
+}
+
+.laptop-assembly {
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+/* ==========================================
+   DISPLAY (LID) ARCHITEKTUR
+   ========================================== */
+
+.laptop-lid {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.laptop-screen {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: clamp(8px, 1.5vw, 16px) clamp(8px, 1.5vw, 16px) 0 0;
+    position: relative;
+    overflow: hidden; /* Schneidet überstehende Sektionen ab */
+    border: clamp(4px, 1vw, 10px) solid #1e293b;
+    border-bottom: clamp(6px, 1.2vw, 12px) solid #0f172a;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 12px 30px rgba(15, 23, 42, 0.15);
+}
+
+.screen-bezel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    z-index: 25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.webcam-lens {
+    width: clamp(3px, 0.5vw, 5px);
+    height: clamp(3px, 0.5vw, 5px);
+    background: #08090d;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    box-shadow: inset 0 0 2px #0f2b48;
+}
+
+.screen-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.08) 35%,
+        transparent 65%
+    );
+    pointer-events: none;
+    z-index: 20;
+    will-change: opacity;
+}
+
+/* ==========================================
+   BASE & CHASSIS (GEHÄUSE & SHADOWS)
+   ========================================== */
+
+.laptop-hinge {
+    width: 32%;
+    height: 7px;
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+    margin: -2px auto 0 auto;
+    border-radius: 2px 2px 0 0;
+}
+
+.laptop-base {
+    width: 105%;
+    margin-left: -2.5%;
+    height: clamp(10px, 1.8vw, 18px);
+    background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 40%, #64748b 100%);
+    border-radius: 2px 2px clamp(8px, 1.8vw, 18px) clamp(8px, 1.8vw, 18px);
+    position: relative;
+    transform: translateZ(10px);
+    transform-style: preserve-3d;
+    z-index: 10;
+    visibility: visible !important;
+    opacity: 1 !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+#js-base-shadow,
+.base-lid-shadow {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    pointer-events: none;
+    z-index: 11;
+    border-radius: inherit;
+    will-change: opacity;
+    transform: translateZ(1px);
+}
+
+.base-top {
+    position: absolute;
+    top: 0;
+    left: 4%;
+    right: 4%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.lid-notch {
+    width: 58px;
+    height: 4px;
+    background: #475569;
+    margin: 0 auto;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: none;
+}
+
+.chassis-edge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Ambient Shadows */
+.laptop-ambient-shadow {
+    width: 120%;
+    margin-left: -10%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.25) 0%, transparent 75%);
+    margin-top: -10px;
+}
+
+.laptop-screen-drop-shadow {
+    position: absolute;
+    bottom: 12px;
+    left: 2%;
+    right: 2%;
+    height: 30px;
+    background: rgba(15, 23, 42, 0.3);
+    filter: blur(12px);
+    transform-origin: bottom center;
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.background-heading {
+    position: sticky;
+    top: 50vh;
+    transform: translateY(-50%);
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: clamp(1.3rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    z-index: 1;
+    pointer-events: none;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.heading-accent {
+    background: linear-gradient(135deg, #65a30d 0%, #16a34a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   WEBSITE LAYER (HELLER LOOK)
+   ========================================== */
+
+.screen-layer, 
+.website-layer, 
+.screen-bg-img, 
+.screen-overlay {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.website-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Dynamische Höhe für alle Sektionen */
+    min-height: 100%;
+    color: #0f172a;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    box-sizing: border-box;
+    pointer-events: auto;
+    background: #f8fafc;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    will-change: transform;
+}
+
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    padding: clamp(0.6rem, 2.2vw, 2.2rem);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.screen-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    filter: brightness(0.95) contrast(1.05);
+    transition: transform 8s ease-out;
+    border: none !important;
+}
+
+.website-layer:hover .screen-bg-img {
+    transform: scale(1.03);
+}
+
+.screen-overlay {
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.45) 0%, rgba(248, 250, 252, 0.95) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, transparent 50%, rgba(248, 250, 252, 0.95) 100%);
+    z-index: 2;
+    pointer-events: none;
+    border: none !important;
+}
+
+/* NAVIGATION */
+.preview-nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(0.4rem, 1vw, 1.5rem);
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    border: none !important;
+}
+
+.preview-brand {
+    display: flex;
+    align-items: center;
+    gap: clamp(4px, 0.6vw, 8px);
+    font-weight: 800;
+    font-size: clamp(0.48rem, 0.95vw, 0.85rem);
+    letter-spacing: 0.15em;
+    color: #0f172a;
+    text-transform: uppercase;
+}
+
+.brand-dot {
+    width: clamp(5px, 0.7vw, 8px);
+    height: clamp(5px, 0.7vw, 8px);
+    background: #65a30d;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(101, 163, 13, 0.4);
+}
+
+.preview-menu {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: clamp(0.4rem, 1.2vw, 1.6rem);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: clamp(3px, 0.5vw, 6px) clamp(10px, 1.2vw, 18px);
+    border-radius: 100px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.preview-menu span {
+    font-size: clamp(0.38rem, 0.7vw, 0.72rem);
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.preview-menu span:hover {
+    color: #0f172a;
+}
+
+.preview-contact-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.25rem, 0.5vw, 0.6rem);
+}
+
+.nav-contact-btn {
+    font-size: clamp(0.35rem, 0.62vw, 0.65rem);
+    color: #1e293b;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: clamp(2px, 0.4vw, 5px) clamp(8px, 0.9vw, 14px);
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+    font-weight: 600;
+}
+
+.nav-contact-btn:hover {
+    background: #65a30d;
+    border-color: #65a30d;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(101, 163, 13, 0.25);
+}
+
+/* HERO */
+.preview-hero {
+    margin: clamp(0.8rem, 2vw, 1.8rem) 0;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: clamp(0.35rem, 0.55vw, 0.58rem);
+    color: #4d7c0f;
+    background: rgba(101, 163, 13, 0.12);
+    padding: clamp(2px, 0.35vw, 4px) clamp(8px, 0.9vw, 14px);
+    border-radius: 100px;
+    border: 1px solid rgba(101, 163, 13, 0.25);
+    margin-bottom: clamp(0.3rem, 0.9vw, 1rem);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.preview-hero h1 {
+    font-size: clamp(0.75rem, 2.5vw, 2.3rem);
+    line-height: 1.1;
+    margin-bottom: clamp(0.3rem, 0.8vw, 0.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+}
+
+.hero-accent {
+    background: linear-gradient(135deg, #65a30d 0%, #16a34a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.preview-hero p {
+    font-size: clamp(0.42rem, 0.78vw, 0.78rem);
+    color: #475569;
+    max-width: 440px;
+    margin: 0 auto clamp(0.6rem, 1.6vw, 1.8rem) auto;
+    line-height: 1.45;
+    font-weight: 500;
+}
+
+.hero-cta-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(0.4rem, 0.9vw, 0.9rem);
+}
+
+.preview-cta {
+    font-family: inherit;
+    font-size: clamp(0.42rem, 0.7vw, 0.7rem);
+    padding: clamp(5px, 0.75vw, 10px) clamp(12px, 1.6vw, 22px);
+    border-radius: 100px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    white-space: nowrap;
+    background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(101, 163, 13, 0.3);
+}
+
+.preview-cta:hover {
+    background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(101, 163, 13, 0.4);
+}
+
+.preview-cta.secondary {
+    background: rgba(255, 255, 255, 0.8);
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.preview-cta.secondary:hover {
+    background: #ffffff;
+    border-color: rgba(15, 23, 42, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   IPHONE RESPONSIVE LOOK (< 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    /* Äußerer Scroll-Container für Mobile */
+    .laptop-scroll-container {
+        height: 300vh;
+    }
+
+    /* Transformiert die Laptop-Hülle in ein iPhone mit 80% Höhe */
+    .laptop-scene {
+        width: min(88vw, 380px) !important;
+        height: 80vh !important; /* Nimmt exakt 80% der Bildschirmlänge ein */
+        max-height: 780px !important;
+        margin: 0 auto;
+        perspective: none !important;
+    }
+
+    .laptop-assembly {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Blendet Laptop-Tastatur & Scharniere aus */
+    .laptop-base, 
+    .laptop-hinge, 
+    .laptop-ambient-shadow, 
+    .laptop-screen-drop-shadow {
+        display: none !important;
+    }
+
+    /* Das Display erhält das iPhone-Gehäuse */
+    .laptop-lid {
+        width: 100% !important;
+        height: 100% !important;
+        transform: none !important;
+        border-radius: 46px !important; /* iPhone Abrundung */
+        border: 10px solid #1e293b !important; /* iPhone Bezel / Rahmen */
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3) !important;
+        background: #000;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .laptop-screen {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 36px !important;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Dynamic Island / Notch Platzierung */
+    .webcam-lens {
+        width: 80px !important;
+        height: 18px !important;
+        background: #000 !important;
+        border-radius: 20px !important;
+        top: 10px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 99 !important;
+    }
+
+    /* INHALTS-ANPASSUNGEN FÜR DEN COMPACTEN IPHONE-SCREEN */
+    .hero-wrapper {
+        padding: 2.2rem 1rem 1rem 1rem; /* Platz oben für Dynamic Island */
+    }
+
+    /* Menü auf kleinen Screens vereinfachen/verkleinern */
+    .preview-menu {
+        display: none; /* Versteckt mittlere Nav-Links für sauberen Look */
+    }
+
+    .preview-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .preview-brand {
+        font-size: 0.75rem;
+    }
+
+    .nav-contact-btn {
+        font-size: 0.65rem;
+        padding: 4px 10px;
+    }
+
+    /* Typografie & Abstände im iPhone skaliert darstellen */
+    .preview-hero h1 {
+        font-size: clamp(1.1rem, 5.2vw, 1.6rem);
+        line-height: 1.2;
+    }
+
+    .preview-hero p {
+        font-size: 0.72rem;
+        line-height: 1.4;
+        max-width: 90%;
+        margin-bottom: 1rem;
+    }
+
+    .hero-badge {
+        font-size: 0.55rem;
+        padding: 3px 8px;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .preview-cta {
+        width: 100%;
+        font-size: 0.72rem;
+        padding: 8px 16px;
+    }
+}
+/* ==========================================
+   SEKTIONEN (HELLER LOOK)
+   ========================================== */
+
+.preview-section {
+    position: relative;
+    z-index: 10;
+    padding: clamp(1rem, 3vw, 2.5rem) clamp(0.8rem, 2vw, 1.5rem);
+    border-top: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: clamp(0.6rem, 1.5vw, 1.2rem);
+}
+
+.section-subtitle {
+    color: #65a30d;
+    font-size: clamp(0.35rem, 0.55vw, 0.55rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.section-header h2 {
+    font-size: clamp(0.9rem, 1.6vw, 1.2rem) !important;
+    margin: 0;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+
+/* ==========================================
+   SERVICES SLIDER (HELL)
+   ========================================== */
+
+.services-section {
+    position: relative;
+    padding-bottom: clamp(2rem, 5vw, 4rem) !important;
+}
+
+.services-slider-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: clamp(1rem, 2vw, 2rem);
+}
+
+/* Slider Track mit horizontalem Scroll */
+.services-track {
+    display: flex;
+    gap: clamp(1rem, 1.5vw, 1.5rem);
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 0.5rem 1.5rem 0.5rem;
+    
+    /* Scrollbar verstecken */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.services-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Einzelne Card Slides */
+.service-card-slide {
+    flex: 0 0 clamp(220px, 30vw, 290px);
+    scroll-snap-align: start;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Bildbereich der Karte */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: clamp(120px, 12vw, 160px);
+    overflow: hidden;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card-slide:hover .card-image-wrapper img {
+    transform: scale(1.08);
+}
+
+.card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: #4d7c0f;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Textbereich der Karte */
+.card-content {
+    padding: clamp(1rem, 1.5vw, 1.25rem);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-icon {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+/* Überschrift der Karte in Poppins */
+.card-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.75rem, 1.1vw, 1.1rem);
+    margin: 0 0 8px 0;
+    color: #0f172a;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+/* Beschreibungstext der Karte in Poppins */
+.card-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 0.9vw, 0.875rem);
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    flex-grow: 1;
+    font-weight: 400;
+}
+
+.card-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    color: #65a30d;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.card-link:hover {
+    color: #4d7c0f;
+    transform: translateX(4px);
+}
+
+/* Slider Navigations-Knöpfe */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #0f172a;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    pointer-events: auto;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slider-btn:hover {
+    background: #65a30d;
+    color: #ffffff;
+    border-color: #65a30d;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.prev-btn { left: -16px; }
+.next-btn { right: -16px; }
+
+
+
+/* ==========================================
+   MISSION CONTROL MAP LOOK (RESPONSIVE & PREMIUM TECH)
+   ========================================== */
+
+/* Full-Width Wrapper */
+.map-premium-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Karten-Vorschau-Container */
+.map-preview-area {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    min-height: 260px;
+    max-height: 450px;
+    background: var(--dark, #0a0a0a);
+    border-radius: 0;
+    overflow: hidden;
+    border: none;
+}
+
+/* Base Iframe mit dezentem Dark-Grayscale-Filter */
+.map-iframe-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+    filter: grayscale(0.75) brightness(0.4) contrast(1.15);
+    opacity: 0.85;
+    transition: filter 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)), 
+                opacity 0.7s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+/* Key-Effekt: Karte wird beim Button-Hover hell und farbig */
+.map-preview-area:has(.map-btn-main:hover) .map-iframe-base {
+    filter: grayscale(0.15) brightness(0.75) contrast(1.05);
+    opacity: 1;
+}
+
+/* Fallback für Browser ohne :has()-Unterstützung */
+@supports not selector(:has(*)) {
+    .map-preview-area:hover .map-iframe-base {
+        filter: grayscale(0.15) brightness(0.75) contrast(1.05);
+        opacity: 1;
+    }
+}
+
+/* Overlay Zentrierung für den Button */
+.map-center-action {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    padding: 16px;
+}
+
+/* --- PREMIUM TECH BUTTON --- */
+.map-btn-main {
+    position: relative;
+    background: rgba(21, 128, 61, 0.95);
+    color: var(--text-white, #ffffff);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    padding: clamp(14px, 2vw, 20px) clamp(24px, 3.5vw, 45px);
+    border-radius: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1.2vw, 15px);
+    text-transform: uppercase;
+    letter-spacing: clamp(1.5px, 0.2vw, 3px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 30;
+    width: auto;
+    max-width: 100%;
+}
+
+/* Slide-In Fill Effect (Weißer Hintergrund beim Hover) */
+.map-btn-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+/* Subtiler Sweep-Gleiteffekt */
+.map-btn-main::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.25), 
+        transparent
+    );
+    transition: left 0.6s ease;
+    z-index: 3;
+}
+
+.map-btn-main:hover::after {
+    left: 140%;
+}
+
+.map-btn-main:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* FIX: Text beim Hover verlässlich auf Schwarz setzen */
+.map-btn-main:hover,
+.map-btn-main:hover .btn-text {
+    color: #000000;
+    border-color: #ffffff;
+   
+}
+
+.map-btn-main:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+                0 0 20px rgba(74, 222, 128, 0.4);
+}
+
+.map-btn-main:active {
+    transform: translateY(-1px) scale(0.99);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* FIX: z-index auf 10 erhöht, damit der Text über dem Effekt liegt */
+.btn-text {
+    position: relative;
+    z-index: 10;
+    white-space: nowrap;
+    transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- PULSE ANIMATION (RADAR INDICATOR) --- */
+.btn-pulse-core {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #4ade80;
+    transition: background 0.3s, box-shadow 0.3s;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.map-btn-main:hover .btn-pulse-core {
+    background: #000000;
+    box-shadow: none;
+}
+
+.btn-pulse-core::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1.5px solid #4ade80;
+    border-radius: 50%;
+    animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    transition: border-color 0.3s;
+}
+
+.map-btn-main:hover .btn-pulse-core::after {
+    border-color: #000000;
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(0.6); opacity: 0.9; }
+    80%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
+/* --- FULLSCREEN MODAL --- */
+.map-fullscreen-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 4, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    padding: clamp(10px, 3vw, 40px);
+}
+
+.map-fullscreen-overlay.is-active {
+    display: flex;
+    opacity: 1;
+}
+
+.map-modal-pure {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 80vh;
+    background: #0a0a0a;
+    border-radius: 0;
+    overflow: hidden;
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 
+                0 0 30px rgba(74, 222, 128, 0.1);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-fullscreen-overlay.is-active .map-modal-pure {
+    transform: translateY(0) scale(1);
+}
+
+.map-iframe-full {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Floating Close Button */
+.map-exit-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.map-exit-btn:hover {
+    background: #e11d48;
+    border-color: #f43f5e;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(225, 29, 72, 0.4);
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+/* Tablets & Laptops (bis 1024px) */
+@media (max-width: 1024px) {
+    .map-modal-pure {
+        height: 85vh;
+    }
+}
+
+/* Mobile Screens (bis 768px) */
+@media (max-width: 768px) {
+    .map-preview-area {
+        height: 10vh;
+        min-height: 220px;
+    }
+    
+    .map-fullscreen-overlay {
+        padding: 0;
+    }
+    
+    .map-modal-pure {
+        width: 100%;
+        height: 100vh;
+        border: none;
+    }
+    
+    .map-exit-btn {
+        top: 15px;
+        right: 15px;
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+}
+
+/* Ultra Small Screens (bis 480px) */
+@media (max-width: 480px) {
+    .map-btn-main {
+        padding: 14px 22px;
+        gap: 10px;
+        width: 90%;
+    }
+    
+    .btn-text {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+}
+/* ==========================================
+   REVIEWS SECTION & AUTO-SLIDER (RESPONSIV)
+   ========================================== */
+
+.reviews-section {
+    padding: clamp(1.2rem, 3vw, 2.5rem) clamp(0.75rem, 2vw, 2rem);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* KOPFBEREICH & GOOGLE BADGE */
+.section-header {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.google-rating-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-top: 0.4rem;
+    font-size: clamp(0.6rem, 0.8vw, 0.75rem);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.google-rating-summary .stars {
+    color: #f59e0b;
+    letter-spacing: 1px;
+}
+
+.review-count {
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ==========================================
+   REVIEWS AUTO-SLIDER (MOBIL FIX)
+   ========================================== */
+
+.reviews-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+    /* Safari Fix für Masken */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.reviews-track {
+    display: flex !important;
+    flex-direction: row !important;
+    width: max-content !important;
+    gap: 0.85rem;
+    padding: 0.5rem 0;
+    
+    /* Hardware-Beschleunigung für iOS erzwingen */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    
+    /* Animationen für WebKit & Standard */
+    -webkit-animation: autoReviewsScroll 20s linear infinite;
+    animation: autoReviewsScroll 20s linear infinite;
+    will-change: transform;
+}
+
+/* WICHTIG: Verhindert das Stoppen bei Touch/Hover auf Mobilgeräten */
+@media (hover: hover) {
+    .reviews-slider-wrapper:hover .reviews-track {
+        animation-play-state: paused;
+    }
+}
+/* ==========================================
+   REVIEWS AUTO-SLIDER (NAHTLOS OHNE SPRUNG)
+   ========================================== */
+
+.reviews-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+.reviews-track {
+    display: flex !important;
+    flex-direction: row !important;
+    width: max-content !important;
+    padding: 0.5rem 0;
+    
+    /* Hardware-Beschleunigung für flüssigen Lauf */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    
+    /* Unendlicher, nahtloser Loop */
+    -webkit-animation: autoReviewsScroll 20s linear infinite;
+    animation: autoReviewsScroll 20s linear infinite;
+    will-change: transform;
+}
+
+/* KARTEN FIX: margin-right statt gap garantiert 100% nahtlosen Übergang */
+.review-card {
+    flex: 0 0 clamp(200px, 45vw, 260px) !important;
+    flex-shrink: 0 !important; 
+    margin-right: 0.85rem !important; /* Abstand statt gap! */
+    
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* KEYFRAMES */
+@-webkit-keyframes autoReviewsScroll {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes autoReviewsScroll {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* ==========================================
+   UNTER 767px (IPHONE / MOBIL)
+   ========================================== */
+@media (max-width: 767px) {
+    .reviews-track {
+        -webkit-animation-duration: 15s;
+        animation-duration: 15s;
+    }
+
+    .review-card {
+        flex: 0 0 210px !important;
+        flex-shrink: 0 !important;
+        margin-right: 0.65rem !important; /* Kleinerer Abstand auf Mobilgeräten */
+        padding: 0.75rem;
+    }
+
+    .author-avatar {
+        width: 26px;
+        height: 26px;
+        font-size: 0.6rem;
+    }
+
+    .review-card p {
+        font-size: 0.65rem;
+        line-height: 1.35;
+    }
+}
+
+/* KARTEN-DESIGN */
+.review-card {
+    flex: 0 0 clamp(200px, 45vw, 260px);
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: clamp(0.75rem, 1.2vw, 1.1rem);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+}
+
+.author-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.avatar-2 { background: linear-gradient(135deg, #ec4899, #be185d); }
+.avatar-3 { background: linear-gradient(135deg, #10b981, #047857); }
+.avatar-4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.avatar-5 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+
+.author-info h4 {
+    margin: 0;
+    font-size: clamp(0.68rem, 0.85vw, 0.8rem);
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.card-stars {
+    color: #f59e0b;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.review-card p {
+    font-size: clamp(0.62rem, 0.75vw, 0.72rem);
+    color: #475569;
+    line-height: 1.45;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ==========================================
+   ANPASSUNGEN FÜR MOBILGERÄTE (< 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    .reviews-section {
+        padding: 1rem 0.5rem;
+    }
+
+    /* Schnellerer Scrollweg für kleine Displays */
+    .reviews-track {
+        animation-duration: 18s;
+        gap: 0.6rem;
+    }
+
+    /* Karten-Skalierung für das iPhone-Format */
+    .review-card {
+        flex: 0 0 210px;
+        border-radius: 12px;
+        padding: 0.75rem;
+    }
+
+    .author-avatar {
+        width: 26px;
+        height: 26px;
+        font-size: 0.6rem;
+    }
+
+    .author-info h4 {
+        font-size: 0.72rem;
+    }
+
+    .review-card p {
+        font-size: 0.65rem;
+        line-height: 1.35;
+    }
+
+    .google-rating-summary {
+        font-size: 0.65rem;
+        padding: 3px 10px;
+    }
+}
+
+/* KARTEN DESIGN */
+.review-card {
+    flex: 0 0 clamp(200px, 45vw, 260px);
+    scroll-snap-align: center;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 16px;
+    padding: clamp(0.75rem, 1.2vw, 1.1rem);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.6rem;
+}
+
+.author-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Einzelne Avatar-Farben */
+.avatar-1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.avatar-2 { background: linear-gradient(135deg, #ec4899, #be185d); }
+.avatar-3 { background: linear-gradient(135deg, #10b981, #047857); }
+.avatar-4 { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+.avatar-5 { background: linear-gradient(135deg, #f59e0b, #b45309); }
+
+.author-info h4 {
+    margin: 0;
+    font-size: clamp(0.68rem, 0.85vw, 0.8rem);
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.card-stars {
+    color: #f59e0b;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+}
+
+.review-card p {
+    font-size: clamp(0.62rem, 0.75vw, 0.72rem);
+    color: #475569;
+    line-height: 1.45;
+    margin: 0;
+    font-style: italic;
+}
+
+/* ==========================================
+   IPHONE & MOBIL ANPASSUNG (< 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    .review-card {
+        flex: 0 0 82%; /* Passt perfekt im iPhone-Screen */
+        scroll-snap-align: center;
+        border-radius: 14px;
+        padding: 0.85rem;
+    }
+
+    .author-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.62rem;
+    }
+
+    .review-card p {
+        font-size: 0.68rem;
+    }
+}
+/* ==========================================
+   CONTACT SECTION (DEMO & MODERN LOOK)
+   ========================================== */
+
+.contact-section {
+  padding: clamp(60px, 8vw, 100px) 24px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10; /* Garantiert, dass die Sektion oben liegt */
+}
+
+.contact-card-wrapper {
+  max-width: 720px;
+  width: 100%;
+  background: #ffffff;
+  padding: clamp(28px, 5vw, 48px);
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05),
+              0 0 1px 1px rgba(15, 23, 42, 0.02);
+  position: relative;
+  z-index: 10;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(24px, 4vw, 36px);
+}
+
+.section-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #65a30d;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.section-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+}
+
+.section-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Formular Layout */
+.preview-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  z-index: 15;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  z-index: 20; /* Stellt sicher, dass die Klicks nicht von Overlays blockiert werden */
+}
+
+/* Eingabefelder: Optimal anklickbar & strukturiert */
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 15px 18px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #0f172a;
+  outline: none;
+  box-sizing: border-box;
+  pointer-events: auto !important; /* Garantiert Klickbarkeit */
+  cursor: text;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.input-group select {
+  cursor: pointer;
+}
+
+/* Placeholder Styling */
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Hover & Focus-Status (Beim Anklicken) */
+.input-group input:hover,
+.input-group select:hover,
+.input-group textarea:hover {
+  border-color: #94a3b8;
+  background: #ffffff;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  background: #ffffff;
+  border-color: #65a30d;
+  box-shadow: 0 0 0 4px rgba(101, 163, 13, 0.15);
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Custom Pfeil für Select-Feld */
+.select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%2064748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px;
+}
+
+/* Button Styling */
+.preview-cta.full-width {
+  width: 100%;
+  padding: 16px 28px;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 6px;
+  pointer-events: auto;
+}
+
+.preview-cta.full-width:hover {
+  background: #65a30d;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(101, 163, 13, 0.35);
+}
+
+.preview-cta.full-width:active {
+  transform: translateY(0);
+}
+
+.preview-cta.full-width .btn-arrow {
+  transition: transform 0.3s ease;
+}
+
+.preview-cta.full-width:hover .btn-arrow {
+  transform: translateX(5px);
+}
+
+/* Demo Feedback Banner */
+.demo-feedback-msg {
+  display: none;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(4, 120, 87, 0.08);
+}
+
+.demo-feedback-msg.show {
+  display: block;
+  animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================
+   AGENCY FOOTER (STRIKT SPEZIFIZIERT & ULTRA CLEAN)
+   ========================================== */
+
+/* Haupt-Container mit hoher Spezifität */
+section.preview-section + footer.preview-footer,
+footer.preview-footer {
+    background: radial-gradient(circle at top right, #0b2b1a 0%, #05180e 100%);
+    color: #ecfdf5;
+    padding: clamp(1.5rem, 3.5vw, 2.8rem) clamp(1rem, 2.5vw, 2.2rem) clamp(0.8rem, 1.8vw, 1.2rem);
+    border-radius: 24px 24px 0 0;
+    margin-top: clamp(1.2rem, 3vw, 2.5rem);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    border-top: 1px solid rgba(132, 204, 22, 0.15);
+}
+
+/* 1. CTA STRIP */
+footer.preview-footer div.footer-cta-strip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+footer.preview-footer span.cta-badge {
+    display: inline-block;
+    font-size: clamp(0.5rem, 0.65vw, 0.6rem);
+    font-weight: 700;
+    color: #84cc16;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+}
+
+footer.preview-footer div.cta-text h3 {
+    margin: 0;
+    font-size: clamp(0.85rem, 1.4vw, 1.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+footer.preview-footer a.footer-cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(132, 204, 22, 0.12);
+    border: 1px solid rgba(132, 204, 22, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    padding: clamp(0.55rem, 0.8vw, 0.7rem) clamp(1.2rem, 1.6vw, 1.5rem);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: clamp(0.6rem, 0.75vw, 0.72rem);
+    transition: all 0.75s cubic-bezier(0.25, 1, 0.3, 1);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer.preview-footer a.footer-cta-btn:hover {
+    background: #84cc16;
+    border-color: #84cc16;
+    color: #05180e;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(132, 204, 22, 0.25);
+}
+
+/* DIVIDER */
+footer.preview-footer div.footer-divider {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(132, 204, 22, 0.2) 0%, rgba(255,255,255,0.02) 100%);
+    margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+/* 2. MAIN CONTENT & BRAND */
+footer.preview-footer div.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+}
+
+footer.preview-footer a.footer-brand {
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 1;
+    display: inline-block;
+}
+
+footer.preview-footer span.brand-accent {
+    color: #84cc16;
+}
+
+footer.preview-footer span.brand-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: clamp(0.55rem, 0.7vw, 0.68rem);
+    color: #a7f3d0;
+    margin-top: 0.6rem;
+    font-weight: 500;
+}
+
+footer.preview-footer span.status-dot {
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.8);
+}
+
+/* 3. META GROUPS & SPEZIFISCHE LINK-ANIMATIONEN */
+footer.preview-footer div.footer-meta {
+    display: flex;
+    gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+footer.preview-footer div.meta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+footer.preview-footer span.meta-label {
+    font-size: clamp(0.5rem, 0.6vw, 0.58rem);
+    font-weight: 700;
+    color: #6ee7b7;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.25rem;
+    opacity: 0.8;
+}
+
+footer.preview-footer ul.meta-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+/* HOCHSPEZIFISCHE LINK ANIMATION (0.75s LANGSAM) */
+footer.preview-footer ul.meta-nav li a.meta-link,
+footer.preview-footer div.meta-group span.meta-text {
+    font-size: clamp(0.62rem, 0.8vw, 0.75rem);
+    color: #a7f3d0;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 2px 0;
+    opacity: 0.85;
+    transition: color 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                letter-spacing 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.75s ease;
+}
+
+footer.preview-footer ul.meta-nav li a.meta-link span.nav-dot {
+    width: 4px;
+    height: 4px;
+    background: #84cc16;
+    border-radius: 50%;
+    margin-right: 0px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* LINK HOVER (EDEL & SPEZIFISCH) */
+footer.preview-footer ul.meta-nav li a.meta-link:hover {
+    color: #ffffff;
+    opacity: 1;
+    letter-spacing: 0.03em;
+}
+
+footer.preview-footer ul.meta-nav li a.meta-link:hover span.nav-dot {
+    opacity: 1;
+    transform: scale(1.4);
+    margin-right: 8px;
+    box-shadow: 0 0 8px rgba(132, 204, 22, 0.8);
+}
+
+footer.preview-footer ul.meta-nav li a.meta-link.highlight {
+    color: #ffffff;
+    font-weight: 600;
+    opacity: 1;
+}
+
+footer.preview-footer ul.meta-nav li a.meta-link.highlight:hover {
+    color: #84cc16;
+}
+
+/* LEGAL BAR & UNTERSTRICH ANIMATION */
+footer.preview-footer div.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: clamp(0.8rem, 1.5vw, 1.2rem);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: clamp(0.52rem, 0.65vw, 0.62rem);
+    color: #059669;
+}
+
+footer.preview-footer div.legal-links {
+    display: flex;
+    gap: 1.2rem;
+}
+
+footer.preview-footer div.legal-links a {
+    color: #a7f3d0;
+    text-decoration: none;
+    opacity: 0.6;
+    position: relative;
+    padding: 2px 0;
+    transition: opacity 0.75s ease, color 0.75s ease;
+}
+
+footer.preview-footer div.legal-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0%;
+    height: 1px;
+    background: #84cc16;
+    transform: translateX(-50%);
+    transition: width 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+footer.preview-footer div.legal-links a:hover {
+    color: #ffffff;
+    opacity: 1;
+}
+
+footer.preview-footer div.legal-links a:hover::after {
+    width: 100%;
+}
+
+/* RESPONSIVE ANPASSUNG (< 767px) */
+@media (max-width: 767px) {
+    footer.preview-footer {
+        padding: 1.1rem 0.85rem 0.8rem 0.85rem;
+        border-radius: 18px 18px 0 0;
+    }
+
+    footer.preview-footer div.footer-cta-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding-bottom: 1rem;
+    }
+
+    footer.preview-footer a.footer-cta-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 1rem;
+    }
+
+    footer.preview-footer div.footer-divider {
+        margin-bottom: 1rem;
+    }
+
+    footer.preview-footer div.footer-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        padding-bottom: 1rem;
+    }
+
+    footer.preview-footer div.footer-meta {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    footer.preview-footer div.footer-bottom {
+        flex-direction: column-reverse;
+        gap: 0.6rem;
+        text-align: center;
+    }
+
+    footer.preview-footer div.legal-links {
+        gap: 1.2rem;
+    }
+}
+
+/* RESPONSIVE FIXES */
+.chassis-edge,
+.base-top {
+    border: none;
+    box-shadow: none;
+}
+
+@media (max-width: 480px) {
+    .preview-menu {
+        display: none;
+    }
+    .hero-badge {
+        display: none;
+    }
+    .services-grid,
+    .reviews-grid,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   IPHONE TRANSFORMATION (MAX-WIDTH: 767px)
+   ========================================== */
+@media (max-width: 767px) {
+    /* Tastatur, Scharnier & Schatten komplett entfernen */
+    .laptop-base,
+    .laptop-hinge,
+    .laptop-ambient-shadow,
+    .laptop-screen-drop-shadow,
+    .screen-bezel,
+    .webcam-lens,
+    #js-base-shadow,
+    #js-screen-shadow {
+        display: none !important;
+    }
+
+    /* iPhone Wrapper Zentrierung & Maße */
+    #js-fixed-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #js-laptop-scene {
+        perspective: none !important;
+        transform-style: flat !important;
+        width: 100% !important;
+        max-width: 310px !important; /* Breite des iPhones */
+        margin: 0 auto;
+    }
+
+    /* Das Gehäuse: Kürzeres Seitenverhältnis (9 / 17.5) */
+    #js-laptop-lid {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 9 / 17.5 !important; /* Etwas kompakteres Smartphone-Format */
+        max-height: 580px !important;       /* Verhindert zu langes Strecken */
+        transform: none !important;
+        border-radius: 40px !important;
+        border: 4px solid #27272a !important;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45),
+                    0 0 0 2px #09090b !important;
+        background: #000000;
+        position: relative;
+        overflow: hidden !important;
+    }
+
+    /* Der Screen: Perfekt abgerundete Ecken ohne eckige Überstände */
+    #js-laptop-screen {
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 36px !important;
+        border: none !important;
+        box-shadow: none !important;
+        overflow: hidden !important;
+        
+        /* FIX FÜR ECKIGE ÜBERSTÄNDE BEIM SCROLLEN: */
+        isolation: isolate;
+        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Erzwingt Corner-Clipping in Webkit/Safari */
+    }
+
+    /* Korrektur für innere Sektionen, damit sie die Rundung nicht sprengen */
+    .website-layer,
+    .preview-section,
+    .map-preview-area {
+        border-radius: 0 !important; /* Innere Elemente bleiben flach, der Screen schneidet rund ab */
+    }
+
+    /* Dynamic Island (Oben) */
+    #js-laptop-lid::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 22px;
+        background: #000000;
+        border-radius: 20px;
+        z-index: 100;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Home Bar (Unten) */
+    #js-laptop-lid::after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 115px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 10px;
+        z-index: 100;
+        pointer-events: none;
+    }
+}
+
+
+
+
+/* ==========================================
+   FIX: GLOBALE KLICK-BLOCKADE AUFHEBEN
+   ========================================== */
+
+/* 1. Alle großen Container für Maus-Events taub schalten */
+.laptop-scroll-container .laptop-scene,
+.laptop-scroll-container .laptop-assembly,
+.laptop-scroll-container .laptop-lid,
+.laptop-scroll-container .laptop-screen,
+.laptop-scroll-container .website-layer,
+.laptop-scroll-container .hero-wrapper {
+    pointer-events: none !important;
+}
+
+/* 2. Klicks AUSSCHLIESSLICH auf den echten Buttons im Laptop erlauben */
+.laptop-scroll-container .preview-menu span,
+.laptop-scroll-container .nav-contact-btn,
+.laptop-scroll-container .preview-cta,
+.laptop-scroll-container a,
+.laptop-scroll-container button {
+    pointer-events: auto !important;
+}/* Wenn der Laptop unsichtbar ist, darf er garantiert nichts blockieren */
+.laptop-scroll-container .sticky-wrapper[style*="opacity: 0"] {
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+@media (max-width: 767px) {
+    /* Höhere Sektion = Animation beginnt gefühlt später und wirkt entspannter */
+    #laptop-scroll-section {
+        height: 550vh !important; /* Standard ist meist 200vh. Mit 250vh oder 300vh kommt es später */
+    }
+}
+
+
+
+
+
+
+
+/* ==========================================
+   ABOUT-SEKTION (GALABAU) - KOMPAKTERE TEXTE & BUTTONS
+   ========================================== */
+
+/* Haupt-Container */
+.about-galabau {
+    padding: clamp(36px, 6vw, 80px) clamp(16px, 4vw, 32px);
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtiler Background-Glow */
+.about-galabau .glow-orb {
+    position: absolute;
+    top: 10%;
+    left: -10%;
+    width: clamp(220px, 35vw, 400px);
+    height: clamp(220px, 35vw, 400px);
+    background: radial-gradient(circle, rgba(101, 163, 13, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Wrapper-Layout */
+.about-galabau .about-wrapper {
+    max-width: 1100px; /* Leicht verkleinert für kompaktes Schriftbild */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: center;
+}
+
+/* Visual-System (Links) */
+.about-galabau .about-visual-group {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.about-galabau .image-frame {
+    position: relative;
+    width: 90%;
+    max-width: 460px;
+    border-radius: clamp(14px, 2.5vw, 24px);
+    overflow: hidden;
+    transform: rotate(-1deg);
+    will-change: transform;
+}
+
+.about-galabau .gardener-image {
+    width: 100%;
+    height: clamp(300px, 40vh, 440px);
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+/* Floating Elements (Ebenfalls leicht verkleinert) */
+.about-galabau .floating-stat {
+    position: absolute;
+    top: clamp(8px, 2.5vw, 20px);
+    right: clamp(-5px, 2vw, 10px);
+    background: #ffffff;
+    padding: clamp(8px, 1.5vw, 12px) clamp(12px, 2vw, 16px);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+    transform: rotate(1deg);
+}
+
+.about-galabau .stat-value {
+    display: block;
+    font-size: clamp(1rem, 1.6vw, 1.15rem); /* Verkleinert */
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.1;
+}
+
+.about-galabau .stat-label {
+    font-size: clamp(0.55rem, 1vw, 0.6rem); /* Verkleinert */
+    text-transform: uppercase;
+    color: #65a30d;
+    letter-spacing: 0.8px;
+}
+
+.about-galabau .experience-card {
+    position: absolute;
+    bottom: clamp(-12px, -1.8vw, -16px);
+    left: clamp(-5px, 2vw, 10px);
+    background: #0f172a;
+    color: #ffffff;
+    padding: clamp(14px, 2.5vw, 18px) clamp(16px, 3vw, 24px);
+    border-radius: 16px;
+    z-index: 3;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
+    max-width: 85%;
+}
+
+.about-galabau .big-number {
+    font-size: clamp(1.9rem, 3.2vw, 2.3rem); /* Verkleinert */
+    font-weight: 900;
+    color: #65a30d;
+    line-height: 1;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.about-galabau .experience-card p {
+    font-size: clamp(0.7rem, 1.2vw, 0.78rem); /* Verkleinert */
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* Typografie & Content (Rechts - gezielt verkleinert) */
+.about-galabau .brand-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: clamp(0.65rem, 1vw, 0.7rem); /* Verkleinert */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.about-galabau .brand-eyebrow .dot {
+    width: 5px;
+    height: 5px;
+    background: #65a30d;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.about-galabau .display-title {
+    font-size: clamp(1.5rem, 3vw, 2.4rem); /* Deutlich verkleinert (vorher 3.2rem) */
+    font-weight: 900;
+    line-height: 1.12;
+    color: #0f172a;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+}
+
+.about-galabau .italic-weight {
+    font-weight: 200;
+    font-style: italic;
+    color: #475569;
+    opacity: 0.75;
+}
+
+.about-galabau .main-p {
+    font-size: clamp(0.88rem, 1.3vw, 0.95rem); /* Verkleinert (vorher 1.05rem) */
+    line-height: 1.5;
+    color: #0f172a;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.about-galabau .garden-feature-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 24px;
+}
+
+.about-galabau .garden-feature-item {
+    font-size: clamp(0.75rem, 1.1vw, 0.8rem); /* Verkleinert */
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+}
+
+.about-galabau .garden-feature-item span {
+    color: #65a30d;
+    margin-right: 5px;
+}
+
+/* CTA-Button (Verkleinert) */
+.about-galabau .garden-cta {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 22px; /* Kompakteres Padding (vorher 14px 28px) */
+    border-radius: 100px;
+    font-size: clamp(0.78rem, 1vw, 0.82rem); /* Kleinere Schriftgröße (vorher 0.9rem) */
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    width: auto;
+}
+
+.about-galabau .garden-cta:hover {
+    background: #65a30d;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(101, 163, 13, 0.25);
+}
+
+
+/* ==========================================
+   MEDIA QUERIES (BREAKPOINTS)
+   ========================================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .about-galabau .about-wrapper { 
+        grid-template-columns: 1fr; 
+        gap: 36px; 
+    }
+
+    .about-galabau .about-visual-group { 
+        order: 2; 
+        margin-top: 10px;
+    }
+
+    .about-galabau .about-content {
+        order: 1;
+    }
+
+    .about-galabau .image-frame {
+        width: 85%;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 576px) {
+    .about-galabau {
+        padding-top: 32px;
+        padding-bottom: 40px;
+    }
+
+    .about-galabau .image-frame {
+        width: 100%;
+        transform: rotate(0deg);
+    }
+
+    .about-galabau .floating-stat {
+        top: 10px;
+        right: 8px;
+        transform: rotate(0deg);
+    }
+
+    .about-galabau .experience-card {
+        bottom: -12px;
+        left: 8px;
+        padding: 12px 16px;
+    }
+
+    .about-galabau .garden-cta {
+        width: 100%; /* Behält volle Breite auf Handys bei, ist aber schlanker */
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}

@@ -1,0 +1,158 @@
+/* ==========================================================================
+   FONT FACES
+   ========================================================================== */
+
+/* Aboreto (Headings) */
+@font-face {
+  font-display: swap;
+  font-family: 'Aboreto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/aboreto-v2-latin-regular.woff2') format('woff2');
+}
+
+/* Poppins (Body Text) */
+@font-face {
+  font-display: swap;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/poppins-v24-latin-regular.woff2') format('woff2');
+}
+
+
+/* ==========================================================================
+   CONTENT SECTIONS & CONTAINER
+   ========================================================================== */
+
+.content-section {
+    padding: 80px var(--side-padding);
+    background-color: var(--clr-white);
+    color: var(--clr-text-main);
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+}
+
+.content-section .container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   TYPOGRAPHY & HEADINGS
+   ========================================================================== */
+
+.content-section h1,
+.content-section h2,
+.content-section h3 {
+    font-family: 'Aboreto', cursive, Georgia, serif;
+    color: var(--clr-text-main);
+    letter-spacing: 0.03em;
+}
+
+.content-section h1 {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: var(--line-weight) solid var(--clr-primary);
+    text-transform: uppercase;
+}
+
+.content-section h2 {
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 1.25rem;
+    color: var(--clr-primary);
+}
+
+.content-section h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* ==========================================================================
+   BLOCKS & STRUCTURE
+   ========================================================================== */
+
+.impressum-block,
+.datenschutz-block {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.impressum-block:last-child,
+.datenschutz-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+
+/* ==========================================================================
+   TEXT ELEMENTS
+   ========================================================================== */
+
+.content-section p,
+.content-section address {
+    font-size: 0.95rem;
+    color: var(--clr-text-main);
+    margin-bottom: 1.25rem;
+}
+
+.content-section address {
+    font-style: normal;
+    line-height: 1.8;
+}
+
+.content-section strong {
+    font-weight: 600;
+    color: var(--clr-text-main);
+}
+
+
+/* ==========================================================================
+   LISTS
+   ========================================================================== */
+
+.content-section ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section li {
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    color: var(--clr-text-main);
+}
+
+.content-section li::marker {
+    color: var(--clr-primary);
+}
+
+
+/* ==========================================================================
+   LINKS & INTERACTION
+   ========================================================================== */
+
+.content-section a {
+    color: var(--clr-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    transition: background-color var(--anim-fast), color var(--anim-fast);
+}
+
+.content-section a:hover,
+.content-section a:focus-visible {
+    background-color: var(--clr-hover-bg);
+    outline: none;
+}
