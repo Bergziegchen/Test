@@ -93,6 +93,13 @@ body {
   margin: 0;
 }
 
+
+html{
+    scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-gutter: stable; 
+ 
+}
 /* ==========================================================================
    3. DIE AUSNAHMEN (Diese Elemente bekommen Poppins)
    ========================================================================== */
