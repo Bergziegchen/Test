@@ -1,0 +1,471 @@
+:root {
+  /* --- COLOR PALETTE --- */
+  --clr-primary: #4f8b69;
+  --clr-primary-light: rgba(79, 139, 105, 0.1);
+  --clr-black: #000000;
+  --clr-white: #ffffff;
+  --clr-bg-alt: #f8fafc;
+  --clr-border: #e2e8f0;
+  --clr-hover-bg: rgba(79, 139, 105, 0.04);
+  --clr-text-main: #0f172a;
+  --clr-text-muted: #64748b;
+  --clr-gold: #e5a83b;
+
+  /* --- MEASUREMENTS --- */
+  --header-h: 100px;
+  --header-h-sticky: 80px;
+  --side-padding: 6vw;
+  --line-weight: 5px;
+
+  /* --- TYPOGRAPHY --- */
+  --ff-heading: 'Paprika', serif;
+  --ff-body: 'Poppins', sans-serif;
+
+  /* --- ANIMATION --- */
+  --anim-smooth: 450ms cubic-bezier(0.25, 1, 0.5, 1);
+  --anim-fast: 200ms ease;
+  --anim-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- FONTS --- */
+@font-face {
+  font-family: 'Paprika';
+  src: url('../fonts/Paprika-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins-v24-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- TESTIMONIAL SECTION --- */
+.testimonial-section {
+  padding: 60px var(--side-padding);
+  font-family: var(--ff-body);
+  background-color: var(--clr-white);
+  color: var(--clr-text-main);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.testimonial-title {
+  font-family: var(--ff-heading);
+  font-size: 2.2rem;
+  color: var(--clr-primary);
+  margin: 0 0 10px 0;
+}
+
+.testimonial-subtitle {
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  margin: 0;
+}
+
+/* --- SLIDER LAYOUT --- */
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.slider-track {
+  display: flex;
+  gap: 24px;
+  transition: transform var(--anim-smooth);
+  will-change: transform;
+}
+
+/* --- REVIEW CARDS --- */
+.review-card {
+  flex: 0 0 clamp(280px, 75vw, 420px);
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  opacity: 0.35;
+  transform: scale(0.92);
+  transition: opacity var(--anim-smooth), transform var(--anim-smooth), border-color var(--anim-smooth), box-shadow var(--anim-smooth);
+}
+
+.review-card.is-center {
+  opacity: 1;
+  transform: scale(1);
+  border-color: var(--clr-primary);
+  box-shadow: 0 8px 25px rgba(79, 139, 105, 0.15);
+}
+
+.review-card:hover {
+  background-color: var(--clr-hover-bg);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.author-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--clr-text-main);
+}
+
+.review-meta {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+  display: block;
+}
+
+.stars {
+  color: var(--clr-gold);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333333;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- NAVIGATION BUTTONS --- */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-text-main);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: opacity var(--anim-fast), background-color var(--anim-fast), color var(--anim-fast), border-color var(--anim-fast), transform var(--anim-bounce);
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.slider-btn:hover:not(:disabled) {
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  border-color: var(--clr-primary);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.slider-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* --- CONTROL FOOTER --- */
+.slider-nav-footer {
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 24px;
+  background-color: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  gap: 20px;
+}
+
+.counter-badge {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 50px;
+  user-select: none;
+}
+
+.current-slide {
+  color: var(--clr-primary);
+  font-size: 1.1rem;
+}
+
+.counter-divider, 
+.total-slides {
+  color: var(--clr-text-muted);
+}
+
+.progress-track {
+  display: flex;
+  gap: 6px;
+  flex: 1;
+  max-width: 260px;
+  align-items: center;
+  height: 24px;
+  cursor: pointer;
+}
+
+.progress-segment {
+  height: 4px;
+  flex: 1;
+  background-color: var(--clr-border);
+  border-radius: 4px;
+  transition: background-color var(--anim-fast), height var(--anim-fast), transform var(--anim-bounce);
+}
+
+.progress-segment.active {
+  background-color: var(--clr-primary);
+  height: 6px;
+}
+
+.progress-segment:hover:not(.active) {
+  background-color: #cbd5e1;
+  transform: scaleY(1.3);
+}
+
+/* --- GOOGLE TRUST BADGE LINK (NEW HOVER ANIMATIONS) --- */
+.google-trust-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 18px;
+  background-color: var(--clr-bg-alt);
+  border: 1px solid var(--clr-border);
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+  transition: transform var(--anim-bounce), box-shadow var(--anim-smooth), border-color var(--anim-fast), background-color var(--anim-fast);
+  cursor: pointer;
+}
+
+/* Shimmer Highlight Effect on Hover */
+.google-trust-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(79, 139, 105, 0.12),
+    transparent
+  );
+  transition: left 600ms ease;
+  pointer-events: none;
+}
+
+.google-trust-badge:hover::before {
+  left: 100%;
+}
+
+.google-trust-badge:hover {
+  transform: translateY(-3px);
+  border-color: var(--clr-primary);
+  background-color: var(--clr-white);
+  box-shadow: 0 8px 22px rgba(79, 139, 105, 0.18);
+}
+
+.google-icon {
+  flex-shrink: 0;
+  transition: transform var(--anim-bounce);
+}
+
+.google-trust-badge:hover .google-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+.badge-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-rating {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--clr-text-main);
+}
+
+.badge-stars {
+  color: var(--clr-gold);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+/* Interactive Underline & Arrow Animation */
+.badge-text {
+  position: relative;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--anim-fast);
+}
+
+.badge-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--clr-primary);
+  border-radius: 2px;
+  transition: width var(--anim-smooth);
+}
+
+.google-trust-badge:hover .badge-text {
+  color: var(--clr-text-main);
+}
+
+.google-trust-badge:hover .badge-text::after {
+  width: 100%;
+}
+
+.external-arrow {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  color: var(--clr-text-muted);
+  transition: transform var(--anim-bounce), color var(--anim-fast), opacity var(--anim-fast);
+}
+
+.google-trust-badge:hover .external-arrow {
+  opacity: 1;
+  color: var(--clr-primary);
+  transform: translate(3px, -3px) scale(1.15);
+}
+
+/* --- RESPONSIVE OPTIMIZATIONS --- */
+@media (max-width: 768px) {
+  .slider-nav-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 20px;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .progress-track {
+    order: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .counter-badge {
+    order: 2;
+  }
+
+  .google-trust-badge {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* ==========================================================================
+   1. DIREKTIONALER UNTERSTRICH-EFFEKT (Einblenden links -> Ausblenden rechts)
+   ========================================================================== */
+
+.nav-link,
+.badge-text {
+  position: relative;
+  text-decoration: none;
+}
+
+/* Ruheverlauf (Default / Non-Hover): Strich verkleinert sich in Richtung rechts */
+.nav-link::after,
+.badge-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--clr-primary);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: right; /* Schrumpft nach rechts weg */
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover-Zustand: Strich wächst von links nach rechts auf */
+.nav-link:hover::after,
+.nav-link.is-active::after,
+.google-trust-badge:hover .badge-text::after {
+  transform: scaleX(1);
+  transform-origin: left; /* Vergrößert sich von links */
+}

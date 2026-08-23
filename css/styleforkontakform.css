@@ -1,0 +1,293 @@
+/* --- BOOKING SECTION (INTEGRIERT IN DEIN ROOT) --- */
+.booking-section {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+  background-color: var(--clr-hover-bg, #f4f6f4);
+  font-family: var(--ff-body);
+}
+
+.booking-container {
+  max-width: 760px;
+  margin-inline: auto;
+  padding-inline: var(--side-padding, 1.25rem);
+}
+
+/* --- HEADER --- */
+.booking-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.booking-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--clr-primary);
+  background: var(--clr-hover-bg);
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.booking-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--clr-black);
+  margin: 0 0 0.5rem 0;
+  font-weight: 400; /* Paprika kommt mit normaler Stärke */
+  line-height: 1.2;
+}
+
+.booking-subtitle {
+  color: var(--clr-text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+  font-family: var(--ff-body);
+}
+
+/* --- FORMULAR CONTAINER --- */
+.booking-form {
+  background: var(--clr-white);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--clr-border);
+  font-family: var(--ff-body);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group-full {
+  margin-top: 1.25rem;
+}
+
+.form-hp {
+  display: none !important;
+}
+
+/* --- LABELS & INPUTS (POPPINS) --- */
+label {
+  font-family: var(--ff-body);
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: var(--clr-black);
+  letter-spacing: 0.2px;
+}
+
+label .req {
+  color: var(--clr-primary);
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+select,
+textarea {
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  color: var(--clr-black);
+  background-color: #f8fafc;
+  border: 1px solid var(--clr-border);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all var(--anim-fast);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--clr-text-muted);
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+/* Custom Select Arrow */
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid var(--clr-text-muted);
+  border-bottom: 2px solid var(--clr-text-muted);
+  transform: translateY(-65%) rotate(45deg);
+  pointer-events: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+}
+
+/* Focus States */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  background-color: var(--clr-white);
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 4px rgba(79, 139, 105, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --- CHECKBOX (CUSTOM) --- */
+.form-checkbox {
+  margin-top: 1.25rem;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  background-color: #f8fafc;
+  border: 1px solid var(--clr-border);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all var(--anim-fast);
+  position: relative;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--clr-primary);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 9px;
+  border: solid var(--clr-white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.checkbox-text {
+  font-family: var(--ff-body);
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+  line-height: 1.4;
+}
+
+.checkbox-text a {
+  color: var(--clr-black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- BUTTON & FEEDBACK --- */
+.form-footer {
+  margin-top: 2rem;
+}
+
+.booking-submit-btn {
+  font-family: var(--ff-body);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.75rem;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--anim-smooth);
+}
+
+.booking-submit-btn:hover {
+  background-color: var(--clr-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(79, 139, 105, 0.25);
+}
+
+.booking-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-response {
+  font-family: var(--ff-body);
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  text-align: center;
+  display: none;
+  font-weight: 500;
+}
+
+.form-response.success {
+  display: block;
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.form-response.error {
+  display: block;
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}

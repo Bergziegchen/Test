@@ -1,0 +1,379 @@
+@import url('stylefornavbar.css');
+@import url('styleforleistungen.css');
+@import url('styleforbewertungen.css');
+@import url('styleforkontakform.css');
+@import url('styleforabout.css');
+@import url('styleforslider.css');
+@import url('styleforschere.css');
+@import url('styleforfooter.css');
+
+:root{
+/* --- Main Root --- */
+
+
+
+
+
+
+
+    --clr-primary: #4f8b69;
+    --clr-black: #000000;
+    --clr-white: #ffffff;
+    
+   
+    --clr-border: #f0f0f0;
+    --clr-hover-bg: rgba(19, 166, 75, 0.04);
+    --clr-text-main: #000000;
+    --clr-text-muted: #666666;
+
+    /* --- MEASUREMENTS --- */
+    --header-h: 100px;
+    --header-h-sticky: 80px;
+    --side-padding: 6vw; 
+    --line-weight: 5px;
+    
+    /* --- TYPOGRAPHY --- */
+
+    --ff-heading: 'Paprika', serif;
+  --ff-body: 'Poppins', sans-serif;
+   
+    --fs-nav: 1.2rem;
+    --fw-nav: 600;
+    --ls-nav: 0.08em;
+
+    /* --- ANIMATION --- */
+    --anim-smooth: 450ms cubic-bezier(0.25, 1, 0.5, 1);
+    --anim-fast: 200ms ease;
+
+}
+
+
+
+@font-face {
+  font-family: 'Paprika';
+  src: url('../fonts/Paprika-Regular.ttf') format('truetype'); /* Passe hier den genauen Dateinamen an */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* poppins-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/poppins-v24-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+
+
+
+
+/* ==========================================================================
+   1. SCHRIFT-VARIABLEN (Im :root)
+   ========================================================================== */
+:root {
+  --ff-paprika: 'Paprika', serif;      /* Für den kreativen, emotionalen Touch */
+  --ff-poppins: 'Poppins', sans-serif; /* Für perfekte Lesbarkeit */
+}
+
+/* ==========================================================================
+   2. GLOBALER STANDARD (Alles ist erst einmal Paprika)
+   ========================================================================== */
+body {
+  /* Setzt Paprika als absolute Basis-Schrift für die gesamte Seite */
+  font-family: var(--ff-paprika);
+  color: var(--clr-text-main);
+  background-color: var(--clr-white);
+  
+  /* Sorgt für scharfe, saubere Kanten bei der Schrift */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. DIE AUSNAHMEN (Diese Elemente bekommen Poppins)
+   ========================================================================== */
+/* h3, p und alle typischen Text- oder Interaktions-Elemente */
+h3, 
+h4, 
+h5, 
+h6, 
+p, 
+a, 
+button, 
+li, 
+span, 
+input, 
+textarea, 
+label {
+  font-family: var(--ff-poppins);
+}
+
+/* ==========================================================================
+   4. FINETUNING FÜR ÜBERSCHRIFTEN (Optional, aber empfohlen)
+   ========================================================================== */
+/* h1 und h2 erben jetzt automatisch Paprika vom body. 
+   Wir setzen hier nur noch die passenden Abstände und Gewichte. */
+h1, 
+h2 {
+  font-weight: normal; /* Paprika sieht in "normal" am besten aus */
+  line-height: 1.1;    /* Engerer Zeilenabstand für große Schriften */
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Standard-Abstand für Absätze (Poppins) */
+p {
+  line-height: 1.6;    /* Entspannter Lese-Abstand */
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+
+
+
+
+/* Hero Container & Layout */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;
+  padding: 80px var(--side-padding);
+  overflow: hidden;
+  background-color: var(--clr-black);
+}
+
+/* Background Image & Ambient Effect */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=2000&q=85');
+  background-size: cover;
+  background-position: center 25%;
+  filter: grayscale(15%);
+  transform: scale(1.02);
+  transition: transform 6s var(--anim-smooth);
+}
+
+.hero:hover .hero-bg {
+  transform: scale(1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Premium-Gefälle für maximale Lesbarkeit der Schrift */
+  background: linear-gradient(
+    90deg, 
+    rgba(0, 0, 0, 0.9) 0%, 
+    rgba(0, 0, 0, 0.65) 50%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+}
+
+/* Content Frame */
+.hero-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hero-content {
+  max-width: 680px;
+  color: var(--clr-white);
+}
+
+/* Header & Meta Info */
+.hero-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-label {
+  font-family: var(--ff-body);
+  font-size: 0.85rem;
+  font-weight: var(--fw-nav);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+}
+
+.hero-label-sub {
+  font-family: var(--ff-body);
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.hero-divider {
+  width: 30px;
+  height: 1px;
+  background-color: var(--clr-primary);
+}
+
+/* Typografie */
+.hero-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.text-italic {
+  font-style: italic;
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-description {
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+/* Interaktive Elemente */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  text-decoration: none;
+  font-family: var(--ff-body);
+  transition: all var(--anim-smooth);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-nav);
+  letter-spacing: var(--ls-nav);
+  border: 2px solid var(--clr-primary);
+  border-radius: 2px;
+}
+
+.btn-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--anim-fast);
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--clr-white);
+  border-color: var(--clr-white);
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-white);
+  font-size: 0.95rem;
+  font-weight: 400;
+  opacity: 0.9;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.location-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--clr-primary);
+}
+
+.btn-text:hover {
+  opacity: 1;
+  color: var(--clr-primary);
+}
+
+/* Floating Rating Badge */
+.hero-badge-floating {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 3px solid var(--clr-primary);
+}
+
+.badge-number {
+  font-family: var(--ff-heading);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--clr-white);
+}
+
+.badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stars {
+  color: #f59e0b;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+.badge-text .sub {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 992px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+  
+  .hero-overlay {
+    background: linear-gradient(
+      180deg, 
+      rgba(0, 0, 0, 0.75) 0%, 
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+}
+
+
+
+
+
+
+

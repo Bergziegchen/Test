@@ -1,0 +1,109 @@
+/* ==========================================================================
+   INTERACTIVE STICKY SCISSORS CUT
+   ========================================================================== */
+
+/* Hoher Wrapper sorgt für den Scroll-Weg (200vh = 2 Bildschirmlängen Scrollweg) */
+.cut-viewport-wrapper {
+  height: 220vh;
+  position: relative;
+  background-color: var(--clr-hover-bg, #f4f6f4);
+}
+
+/* Bleibt am Bildschirm kleben, während gescrollt wird */
+.cut-sticky-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inhalt im Hintergrund */
+.cut-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  max-width: 650px;
+}
+
+.cut-tagline {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--clr-primary);
+  margin-bottom: 0.5rem;
+}
+
+.cut-content h2 {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  color: var(--clr-text-main);
+  margin-bottom: 1rem;
+}
+
+.cut-content p {
+  font-size: 1.15rem;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+}
+
+/* Die beiden Papierhälften */
+.paper-half {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%; /* Leicht überlappend gegen Lücken */
+  background-color: var(--clr-white, #ffffff);
+  z-index: 2;
+  transition: transform 0.05s linear;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+.paper-top {
+  top: 0;
+  border-bottom: 2px dashed rgba(0, 0, 0, 0.18); /* Deine gestrichelte Kante! */
+  transform-origin: top left;
+}
+
+.paper-bottom {
+  bottom: 0;
+  border-top: 2px dashed rgba(0, 0, 0, 0.18);
+  transform-origin: bottom left;
+}
+
+/* Scheren-Container & Animation */
+.scissors-container {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  z-index: 10;
+  color: var(--clr-primary, #2d5a27);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.scissors-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Klingen-Drehpunkte für den Schnipp-Effekt */
+.blade-top {
+  transform-origin: 40px 50px;
+}
+
+.blade-bottom {
+  transform-origin: 40px 50px;
+}

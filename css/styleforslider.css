@@ -1,0 +1,549 @@
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   HAARSTUDIO SLIDER
+========================================= */
+
+.salon-slider {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - var(--header-h));
+    min-height: 650px;
+
+    overflow: hidden;
+    background: var(--clr-white);
+    margin: 7rem 0 7rem 0;
+}
+
+
+/* =========================================
+   SLIDES
+========================================= */
+
+.salon-slide-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.salon-slide {
+    position: absolute;
+    inset: 0;
+
+    display: none;
+    overflow: hidden;
+}
+
+.salon-slide.salon-active,
+.salon-slide.salon-preview-left,
+.salon-slide.salon-preview-right {
+    display: block;
+}
+
+.salon-slide.salon-active {
+    z-index: 5;
+}
+
+
+/* =========================================
+   FARBBEREICH
+========================================= */
+
+.salon-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: calc(100% - 500px);
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    color: var(--clr-white);
+
+    /* Desktop: gerade Unterkante */
+    border-radius: 0;
+
+    /* Startpunkt der Farb-Animation */
+    clip-path: ellipse(
+        0% 120%
+        at 0% 50%
+    );
+}
+
+
+/* Haarstudio-Farben */
+
+.salon-panel-warm {
+    background: #9b6757;
+}
+
+.salon-panel-rose {
+    background: #b77b78;
+}
+
+.salon-panel-sand {
+    background: #aa916d;
+}
+
+.salon-panel-dark {
+    background: #34302d;
+}
+
+
+/* =========================================
+   CLIP-PATH FARBBEWEGUNG
+========================================= */
+
+.slide-forward .salon-active .salon-panel {
+    animation:
+        salonColorRevealForward
+        900ms
+        cubic-bezier(0.77, 0, 0.18, 1)
+        forwards;
+}
+
+.slide-backward .salon-active .salon-panel {
+    animation:
+        salonColorRevealBackward
+        900ms
+        cubic-bezier(0.77, 0, 0.18, 1)
+        forwards;
+}
+
+
+@keyframes salonColorRevealForward {
+
+    from {
+        clip-path: ellipse(
+            0% 120%
+            at 0% 50%
+        );
+    }
+
+    to {
+        clip-path: ellipse(
+            125% 125%
+            at 0% 50%
+        );
+    }
+}
+
+
+@keyframes salonColorRevealBackward {
+
+    from {
+        clip-path: ellipse(
+            0% 120%
+            at 100% 50%
+        );
+    }
+
+    to {
+        clip-path: ellipse(
+            125% 125%
+            at 100% 50%
+        );
+    }
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.salon-copy {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    max-width: 760px;
+
+    padding:
+        80px
+        60px
+        120px
+        var(--side-padding);
+}
+
+
+.salon-eyebrow {
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-family: var(--ff-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    letter-spacing: var(--ls-nav);
+    text-transform: uppercase;
+
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+.salon-copy h2 {
+    margin: 0 0 30px;
+
+    font-family: var(--ff-heading);
+    font-size: clamp(3rem, 5vw, 6rem);
+    font-weight: normal;
+    line-height: 1;
+
+    color: var(--clr-white);
+}
+
+
+.salon-copy p {
+    max-width: 650px;
+
+    margin: 0;
+
+    font-family: var(--ff-body);
+    font-size: 1.05rem;
+    line-height: 1.8;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.salon-action {
+    margin-top: 32px;
+    padding: 14px 30px;
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 999px;
+
+    background: transparent;
+    color: var(--clr-white);
+
+    font-family: var(--ff-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: var(--anim-smooth);
+}
+
+.salon-action:hover {
+    background: var(--clr-white);
+    color: var(--clr-primary);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   BILD
+========================================= */
+
+.salon-picture {
+    position: absolute;
+
+    top: 0;
+    right: clamp(0px, 4vw, 70px);
+
+    width: clamp(360px, 38vw, 560px);
+    height: 100%;
+
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    z-index: 10;
+
+    pointer-events: none;
+}
+
+
+.salon-picture img {
+    width: 105%;
+    max-height: 78%;
+
+    object-fit: contain;
+
+    /* Responsiver Overlap */
+    transform: translateX(
+        clamp(-100px, -5vw, -35px)
+    );
+
+    filter:
+        drop-shadow(
+            0 30px 30px rgba(0, 0, 0, 0.2)
+        );
+
+    transition: transform var(--anim-smooth);
+}
+
+
+.salon-picture figcaption {
+    width: 80%;
+
+    margin: 20px 0 30px;
+
+    transform: translateX(
+        clamp(-60px, -3vw, -20px)
+    );
+
+    font-family: var(--ff-body);
+    font-size: clamp(0.75rem, 1vw, 0.9rem);
+    font-weight: 500;
+
+    text-align: center;
+
+    color: var(--clr-black);
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.salon-navigation {
+    position: absolute;
+
+    left: var(--side-padding);
+    bottom: 35px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    z-index: 100;
+    isolation: isolate;
+}
+
+
+.salon-navigation button {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.18);
+    color: var(--clr-white);
+
+    font-family: var(--ff-body);
+    font-size: 1.15rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        transform var(--anim-fast),
+        background var(--anim-fast),
+        border-color var(--anim-fast);
+}
+
+
+.salon-navigation button:hover {
+    background: var(--clr-white);
+    color: var(--clr-primary);
+
+    border-color: var(--clr-white);
+
+    transform: scale(1.08);
+}
+
+
+.salon-navigation button:active {
+    transform: scale(0.95);
+}
+
+
+.salon-navigation button:focus-visible {
+    outline: 2px solid var(--clr-white);
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .salon-panel {
+        width: calc(100% - 390px);
+    }
+
+    .salon-picture {
+        width: 430px;
+        right: 0;
+    }
+
+    .salon-picture img {
+        width: 105%;
+        transform: translateX(-45px);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .salon-slider {
+        height: calc(100vh - var(--header-h-sticky));
+        min-height: 780px;
+    }
+
+
+    /* Farbfläche */
+    .salon-panel {
+        width: 100%;
+        height: 68%;
+
+        /* Mobile: ovale Unterkante */
+        border-radius:
+            0
+            0
+            50% 50%
+            / 0
+            0
+            14% 14%;
+
+        clip-path: ellipse(
+            120% 100%
+            at 50% 0%
+        );
+    }
+
+
+    /* Mobile Farb-Animation */
+
+    @keyframes salonColorRevealForward {
+
+        from {
+            clip-path: ellipse(
+                0% 100%
+                at 50% 0%
+            );
+        }
+
+        to {
+            clip-path: ellipse(
+                130% 100%
+                at 50% 0%
+            );
+        }
+    }
+
+
+    @keyframes salonColorRevealBackward {
+
+        from {
+            clip-path: ellipse(
+                0% 100%
+                at 50% 0%
+            );
+        }
+
+        to {
+            clip-path: ellipse(
+                130% 100%
+                at 50% 0%
+            );
+        }
+    }
+
+
+    /* Text */
+
+    .salon-copy {
+        padding:
+            60px
+            30px
+            100px;
+    }
+
+    .salon-copy h2 {
+        font-size: 2.8rem;
+    }
+
+    .salon-copy p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+    }
+
+
+    /* Bild */
+
+    .salon-picture {
+        top: auto;
+        right: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 40%;
+
+        padding: 10px;
+    }
+
+    .salon-picture img {
+        width: 65%;
+        max-height: 80%;
+
+        transform: translateX(0);
+    }
+
+    .salon-picture figcaption {
+        width: 80%;
+
+        margin-bottom: 8px;
+
+        transform: translateX(0);
+
+        font-size: 0.8rem;
+    }
+
+
+    /* Navigation */
+
+    .salon-navigation {
+        left: 50%;
+        bottom: 18px;
+
+        width: auto;
+
+        transform: translateX(-50%);
+
+        gap: 12px;
+    }
+
+    .salon-navigation button {
+        width: 48px;
+        height: 48px;
+
+        font-size: 1rem;
+    }
+}

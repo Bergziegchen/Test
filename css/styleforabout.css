@@ -1,0 +1,430 @@
+/* ==========================================================================
+   STATEMENT BANNER (BIG TYPO TOP-LEFT TO RIGHT)
+   ========================================================================== */
+.st-statement-section {
+  width: 100%;
+  padding-top: calc(var(--header-h) + 32px);
+  padding-bottom: 64px;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
+  box-sizing: border-box;
+}
+
+.st-statement-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; /* Links ausgerichtet */
+}
+
+.st-statement__title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+  font-weight: 400;
+  color: var(--clr-black);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  max-width: 1050px; /* Läuft von oben links weit nach rechts */
+}
+
+.st-statement__subtitle {
+  font-family: var(--ff-body);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 300;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  max-width: 620px;
+}
+
+/* ==========================================================================
+   STUDIO TEAM (CENTERED GRID BELOW)
+   ========================================================================== */
+.st-section {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 48px;
+  padding-bottom: 96px;
+  padding-left: var(--side-padding);
+  padding-right: var(--side-padding);
+  box-sizing: border-box;
+}
+
+/* Perfekt zentrierter Header für das Team */
+.st-header {
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.st-header__title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--clr-text-main);
+  line-height: 1.25;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.st-header__subtitle {
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Grid Layout (3 Spalten) */
+.st-grid {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 36px;
+}
+
+.st-grid__item {
+  display: flex;
+  min-width: 0;
+}
+
+/* Card Component */
+.st-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Placeholders & Media Frame */
+.st-card__media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--clr-border);
+  border-radius: 4px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: background-color var(--anim-fast), border-color var(--anim-fast);
+}
+
+.st-card__avatar {
+  width: 38px;
+  height: 38px;
+  color: var(--clr-text-muted);
+  opacity: 0.4;
+  transition: opacity var(--anim-fast), color var(--anim-fast);
+}
+
+/* Micro-Interaktion bei Hover */
+.st-card:hover .st-card__media {
+  background-color: var(--clr-hover-bg);
+  border-color: var(--clr-primary);
+}
+
+.st-card:hover .st-card__avatar {
+  opacity: 0.9;
+  color: var(--clr-primary);
+}
+
+/* Content & Typografie */
+.st-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.st-card__name {
+  font-family: var(--ff-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--clr-text-main);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.st-card__role {
+  font-family: var(--ff-body);
+  font-size: 0.72rem;
+  font-weight: var(--fw-nav);
+  letter-spacing: var(--ls-nav);
+  color: var(--clr-primary);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.st-card__bio {
+  font-family: var(--ff-body);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  max-width: 280px;
+}
+
+/* ==========================================================================
+   RESPONSIVITY & ACCESSIBILITY
+   ========================================================================== */
+@media (max-width: 900px) {
+  .st-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 24px;
+  }
+}
+
+@media (max-width: 550px) {
+  .st-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-card__media,
+  .st-card__avatar {
+    transition: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   PINBOARD GALLERY SECTION WITH RIBBON
+   ========================================================================== */
+
+.pinboard-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem var(--side-padding);
+  background-color: var(--clr-white);
+  box-sizing: border-box;
+  overflow: hidden; /* Verhindert horizontales Scrollen durch das durchgehende Band */
+}
+
+/* Braunes Band über die komplette Bildschirmbreite */
+.pinboard-tape {
+  position: absolute;
+  top: 48%; /* Höhe des Bandes (verläuft leicht schräg hinter den Bildern) */
+  left: -5%;
+  width: 110%; /* Reicht leicht über die Ränder hinaus */
+  height: 24px;
+  background-color: #8b5a2b; /* Schönes warmes Leder-/Holzbraun */
+  background-image: linear-gradient(90deg, rgba(0,0,0,0.1), rgba(255,255,255,0.08), rgba(0,0,0,0.1));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: rotate(-1.5deg); /* Leicht dynamische Schräge */
+  z-index: 1; /* Liegt HINTER den Karten (z-index: 2) */
+}
+
+.pinboard-container {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  z-index: 2; /* Liegt VOR dem braunen Band */
+}
+
+/* Grid Layout */
+.pinboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding-top: 2rem;
+  align-items: center;
+}
+
+/* Polaroids / Angepinnte Karten */
+.pinboard-card {
+  position: relative;
+  background-color: var(--clr-white);
+  padding: 16px 16px 24px 16px;
+  border-radius: 2px;
+
+  /* Gestrichelte Umrandung aus den Service-Preisen */
+  border: 2px dashed rgba(0, 0, 0, 0.18);
+
+  /* Papierschatten für Tiefeneffekt */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transition: transform var(--anim-smooth), box-shadow var(--anim-smooth), border-color var(--anim-fast);
+  cursor: pointer;
+}
+
+/* --- Neigungen der einzelnen Karten --- */
+.pinboard-card--left {
+  transform: rotate(-4deg) translateY(0);
+}
+
+.pinboard-card--right {
+  transform: rotate(3.5deg) translateY(12px);
+}
+
+.pinboard-card--straight {
+  transform: rotate(-2deg) translateY(-8px);
+}
+
+
+/* Nadel (Pin) oben auf dem Bild */
+.pinboard-pin {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: var(--clr-primary);
+  border-radius: 50%;
+  border: 2px solid var(--clr-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.pinboard-pin::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+/* Rahmen um das Bild */
+.pinboard-frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--clr-border);
+  margin-bottom: 16px;
+}
+
+.pinboard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--anim-smooth);
+}
+
+/* Bildunterschrift */
+.pinboard-caption {
+  font-family: var(--ff-heading);
+  font-size: 1.15rem;
+  color: var(--clr-text-main);
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Responsive Ansicht */
+@media (max-width: 900px) {
+  .pinboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .pinboard-tape {
+    display: none; /* Auf Mobilgeräten ausblenden für ein sauberes Layout */
+  }
+
+  .pinboard-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
+    gap: 3rem;
+  }
+
+  .pinboard-card--left,
+  .pinboard-card--right,
+  .pinboard-card--straight {
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pinboard-card,
+  .pinboard-img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  /* Das braune Band bleibt mobil sichtbar & wandert nach oben */
+  .pinboard-tape {
+    display: block;
+    top: 1.5rem; /* Platziert das Band oben über dem ersten Bild */
+    left: -10%;
+    width: 120%;
+    height: 18px; /* Leicht schmaler für Smartphones */
+    transform: rotate(-1deg); /* Dezente Schräge */
+  }
+
+  .pinboard-grid {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin: 0 auto;
+    gap: 3.5rem;
+    padding-top: 2.5rem; /* Genügend Abstand nach oben zum Band */
+  }
+
+  /* Karten bleiben auf dem Smartphone gerade für bessere Lesbarkeit */
+  .pinboard-card--left,
+  .pinboard-card--right,
+  .pinboard-card--straight {
+    transform: rotate(0deg) translateY(0);
+  }
+}
