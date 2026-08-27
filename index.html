@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+
+
+
+<body>
+   
+
+
+<!-- Accessibility: Skip-Link für Tastatur-Nutzer -->
+<a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Hauptnavigation">
+    <div class="nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="nav-logo" aria-label="Salon Paprika - Zur Startseite">
+        <span class="logo-text">Mellis Haarstudio</span>
+      </a>
+
+      <!-- Hamburger Button (Animated Icon) -->
+      <button 
+        type="button"
+        class="hamburger" 
+        id="hamburger-btn"
+        aria-expanded="false" 
+        aria-controls="primary-navigation" 
+        aria-label="Menü öffnen"
+      >
+        <span class="hamburger-box" aria-hidden="true">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </span>
+        <span class="sr-only">Menü</span>
+      </button>
+
+      <!-- Mobile Overlay Backdrop -->
+      <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+      <!-- Navigations-Liste -->
+      <div class="nav-wrapper" id="primary-navigation">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#home" class="nav-link is-active" aria-current="page">
+              <span>Home</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#leistungen" class="nav-link">
+              <span>Leistungen</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">
+              <span>Über uns</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#kontakt" class="nav-link">
+              <span>Kontakt</span>
+            </a>
+          </li>
+          <!-- Optisch hervorgehobener CTA-Link -->
+          <li class="nav-item nav-item-cta">
+            <a href="#termin" class="btn-nav-cta">
+              <svg class="btn-icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Termin anfragen</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+
+
+
+<section class="mellis-hero" id="home">
+
+    <div class="mellis-hero__card">
+
+        <!-- =========================================
+             LINKE FLÄCHE (Textinhalt - Unverändert)
+        ========================================== -->
+        <div class="mellis-hero__left">
+
+            <!-- Logo -->
+            <div class="mellis-hero__logo">
+                <div class="mellis-hero__logo-mark">
+                    <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <circle cx="50" cy="50" r="47"></circle>
+                        <path d="M35 65 C42 48 49 32 64 25"></path>
+                        <path d="M38 67 C52 58 64 47 70 31"></path>
+                        <path d="M33 61 C43 64 53 67 63 69"></path>
+                    </svg>
+                </div>
+
+                <div class="mellis-hero__logo-text">
+                    Mellis<br>
+                    Haarstudio
+                </div>
+            </div>
+
+
+            <!-- Inhalt -->
+            <div class="mellis-hero__content">
+
+                <div class="mellis-hero__eyebrow">
+                    Hohnstorf (Elbe)
+                    <span>·</span>
+                    Inh. Melanie Diedrich
+                </div>
+
+
+                <h1>
+                    Dein Look
+                    <br>
+                    <span>in besten Händen.</span>
+                </h1>
+
+
+                <p>
+                    Erlebe meisterhafte Haarkunst, individuelle
+                    Colorationen und professionelles Styling.
+                    Wir nehmen uns Zeit für deine Schönheit
+                    und dein Wohlbefinden.
+                </p>
+
+
+                <a href="#termin" class="mellis-hero__button">
+
+                    <span>Termin vereinbaren</span>
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14"></path>
+                        <path d="m13 6 6 6-6 6"></path>
+                    </svg>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================================
+             FOTO (Unverändert)
+        ========================================== -->
+        <div class="mellis-hero__portrait">
+
+            <img
+                src="img/images3.jpg"
+                alt="Hairstyling bei Mellis Haarstudio"
+            >
+
+        </div>
+
+
+        <!-- =========================================
+             RECHTE FLÄCHE (High-End Friseurschere)
+        ========================================== -->
+        <div class="mellis-hero__right">
+
+            <!-- Schere -->
+            <div class="mellis-hero__scissors">
+
+                <!-- Der überarbeitete SVG-Code für eine realistischere Schere -->
+                <svg viewBox="0 0 420 420" aria-hidden="true">
+                    <g class="mellis-scissors-group">
+                        
+                        <!-- HÄLFTE 1: UNTERE KLINGE + OBERER GRIFF (Hintergrund) -->
+                        <g class="scissor-blade-back">
+                            <!-- Klinge unten rechts -->
+                            <path class="scissor-blade" d="
+                                M 210 210 
+                                C 240 220, 290 255, 360 280
+                                C 365 282, 368 274, 362 270
+                                C 290 220, 245 195, 210 210
+                                Z" />
+                            
+                            <!-- Griff oben links mit integriertem Loch -->
+                            <path class="scissor-handle" fill-rule="evenodd" d="
+                                M 210 210
+                                C 180 190, 150 160, 115 125
+                                C 85 95, 50 100, 45 140
+                                C 40 180, 80 205, 120 175
+                                C 145 155, 175 195, 210 210
+                                Z
+                                M 80 135
+                                C 70 120, 90 110, 100 125
+                                C 110 140, 90 150, 80 135
+                                Z" />
+                        </g>
+
+                        <!-- HÄLFTE 2: OBERE KLINGE + UNTERER GRIFF + FINGERREST (Vordergrund) -->
+                        <g class="scissor-blade-front">
+                            <!-- Klinge oben rechts -->
+                            <path class="scissor-blade" d="
+                                M 210 210
+                                C 240 200, 290 165, 360 140
+                                C 365 138, 368 146, 362 150
+                                C 290 200, 245 225, 210 210
+                                Z" />
+                            
+                            <!-- Griff unten links mit integriertem Loch -->
+                            <path class="scissor-handle" fill-rule="evenodd" d="
+                                M 210 210
+                                C 180 230, 150 260, 115 295
+                                C 85 325, 50 320, 45 280
+                                C 40 240, 80 215, 120 245
+                                C 145 265, 175 225, 210 210
+                                Z
+                                M 80 285
+                                C 70 300, 90 310, 100 295
+                                C 110 280, 90 270, 80 285
+                                Z" />
+
+                            <!-- Fingerrest / Ausfinger-Haken -->
+                            <path class="scissor-fingerrest" d="
+                                M 52 305
+                                C 35 320, 20 320, 15 310
+                                C 10 300, 22 295, 32 302
+                                C 42 308, 48 300, 52 305
+                                Z" />
+                        </g>
+
+                        <!-- DETAILS -->
+                        <!-- Gummi-Stopper (Muffler) -->
+                        <circle class="scissor-stopper" cx="108" cy="210" r="4" />
+
+                        <!-- Einstellschraube / Gewerbe -->
+                        <circle class="scissor-pivot-outer" cx="210" cy="210" r="11" />
+                        <circle class="scissor-pivot-ring" cx="210" cy="210" r="8" />
+                        <circle class="scissor-pivot-core" cx="210" cy="210" r="4" />
+                        
+                    </g>
+                </svg>
+
+            </div>
+
+            <!-- Kleine Information (Unverändert) -->
+            <div class="mellis-hero__side-info">
+
+                <span>01</span>
+
+                <div>
+                    <br>
+                    <br>
+                    
+                </div>
+
+            </div>
+
+
+            <div class="mellis-hero__address">
+                Adolf-Lüchau-Weg 1<br>
+                21522 Hohnstorf (Elbe)
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<main>
+
+
+
+
+
+
+
+
+
+
+
+<!-- STATEMENT SECTION -->
+<section class="st-statement-section" aria-label="Philosophie">
+  <div class="st-statement-container">
+    <h1 class="st-statement__title">
+      Hier kennt man sich. Hier vertraut man sich.
+    </h1>
+    <p class="st-statement__subtitle">
+     Egal ob aus dem Nachbardorf oder direkt von nebenan: Wir nehmen uns Zeit für dich, dein Haar und eine entspannte Auszeit vom Alltag.
+    </p>
+  </div>
+</section>
+
+
+
+
+<!-- PINBOARD GALLERY SECTION -->
+<section class="pinboard-section" aria-label="Impressionen">
+  <!-- Das braune Band im Hintergrund -->
+  <div class="pinboard-tape" aria-hidden="true"></div>
+
+  <div class="pinboard-container">
+    <div class="pinboard-grid">
+
+      <!-- Bild 1 -->
+      <article class="pinboard-card pinboard-card--left">
+        <div class="pinboard-pin" aria-hidden="true"></div>
+        <div class="pinboard-frame">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" alt="Einblicke in den Salon" class="pinboard-img" />
+        </div>
+        <p class="pinboard-caption">Wohlfühlatmosphäre</p>
+      </article>
+
+      <!-- Bild 2 -->
+      <article class="pinboard-card pinboard-card--right">
+        <div class="pinboard-pin" aria-hidden="true"></div>
+        <div class="pinboard-frame">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Styling Details" class="pinboard-img" />
+        </div>
+        <p class="pinboard-caption">Präzision &amp; Liebe zum Detail</p>
+      </article>
+
+      <!-- Bild 3 -->
+      <article class="pinboard-card pinboard-card--straight">
+        <div class="pinboard-pin" aria-hidden="true"></div>
+        <div class="pinboard-frame">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Friseur bei der Arbeit" class="pinboard-img" />
+        </div>
+        <p class="pinboard-caption">Echtes Handwerk</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section id="leistungen" class="services-section" aria-labelledby="services-title">
+  <div class="container">
+    <div class="services-header">
+      <h2 id="services-title" class="section-title">Unsere Leistungen</h2>
+      <p class="section-subtitle">Individuelle Beratung und professionelles Styling für deinen perfekten Look. Lehn dich zurück und genieße deine Auszeit.</p>
+    </div>
+
+    <!-- Tab-Navigation (Filter) -->
+    <div class="service-tabs" role="tablist" aria-label="Leistungs-Kategorien">
+      <button role="tab" aria-selected="true" aria-controls="panel-damen" id="tab-damen" class="tab-btn is-active">
+        Damen
+      </button>
+      <button role="tab" aria-selected="false" aria-controls="panel-herren" id="tab-herren" class="tab-btn">
+        Herren
+      </button>
+      <button role="tab" aria-selected="false" aria-controls="panel-farbe" id="tab-farbe" class="tab-btn">
+        Farbe & Pflege
+      </button>
+    </div>
+
+    <!-- Tab-Inhalte (Preislisten) -->
+    <div class="service-panels">
+      
+      <!-- ================= PANEL: DAMEN ================= -->
+      <div id="panel-damen" role="tabpanel" aria-labelledby="tab-damen" class="service-panel is-active">
+        <div class="service-list">
+          
+          <!-- Artikel Start (Einfach zu kopieren) -->
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Waschen, Schneiden, Föhnen</h3>
+              <p class="service-desc">Inkl. typgerechter Beratung & passender Pflege</p>
+            </div>
+            <span class="service-price">ab 45,00 €</span>
+          </article>
+          <!-- Artikel Ende -->
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Waschen & Föhnen / Legen</h3>
+              <p class="service-desc">Perfektes Styling für den Alltag oder besondere Anlässe</p>
+            </div>
+            <span class="service-price">ab 25,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Trockenhaarschnitt</h3>
+              <p class="service-desc">Spitzen schneiden ohne Waschen (nur bei glatten Haaren)</p>
+            </div>
+            <span class="service-price">ab 22,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Pony schneiden</h3>
+              <p class="service-desc">Kurzes Nachschneiden der Konturen</p>
+            </div>
+            <span class="service-price">8,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Hochsteckfrisur / Event-Styling</h3>
+              <p class="service-desc">Für Feiern, Bälle oder als Hochzeitsgast</p>
+            </div>
+            <span class="service-price">ab 45,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Braut-Styling (inkl. Probestecken)</h3>
+              <p class="service-desc">Individuelle Beratung, Probe-Termin und Styling am großen Tag</p>
+            </div>
+            <span class="service-price">ab 150,00 €</span>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ================= PANEL: HERREN ================= -->
+      <div id="panel-herren" role="tabpanel" aria-labelledby="tab-herren" class="service-panel" hidden>
+        <div class="service-list">
+          
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Herrenschnitt Komplett</h3>
+              <p class="service-desc">Waschen, Schneiden, Föhnen & Styling</p>
+            </div>
+            <span class="service-price">24,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Trockenschnitt</h3>
+              <p class="service-desc">Klassischer Haarschnitt ohne Waschen</p>
+            </div>
+            <span class="service-price">19,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Maschinenschnitt</h3>
+              <p class="service-desc">Einheitliche Länge (kompletter Kopf)</p>
+            </div>
+            <span class="service-price">15,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Bartpflege & Konturen</h3>
+              <p class="service-desc">Kürzen, in Form bringen und Rasur der Konturen</p>
+            </div>
+            <span class="service-price">12,00 €</span>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ================= PANEL: FARBE & PFLEGE ================= -->
+      <div id="panel-farbe" role="tabpanel" aria-labelledby="tab-farbe" class="service-panel" hidden>
+        <div class="service-list">
+          
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Ansatzfarbe</h3>
+              <p class="service-desc">Färben des Ansatzes (bis 2cm)</p>
+            </div>
+            <span class="service-price">ab 35,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Farbe komplett</h3>
+              <p class="service-desc">Coloration vom Ansatz bis in die Spitzen</p>
+            </div>
+            <span class="service-price">ab 55,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Foliensträhnen (Oberkopf)</h3>
+              <p class="service-desc">Für natürliche Reflexe</p>
+            </div>
+            <span class="service-price">ab 45,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Foliensträhnen (Ganzer Kopf)</h3>
+              <p class="service-desc">Klassische Strähnchentechnik für helle Effekte</p>
+            </div>
+            <span class="service-price">ab 75,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Balayage / Ombré</h3>
+              <p class="service-desc">Freihandtechnik für fließende, natürliche Farbverläufe</p>
+            </div>
+            <span class="service-price">ab 95,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Glossing / Veredelung</h3>
+              <p class="service-desc">Auffrischung der Farbe und brillanter Glanz</p>
+            </div>
+            <span class="service-price">ab 25,00 €</span>
+          </article>
+
+          <article class="service-item">
+            <div class="service-info">
+              <h3 class="service-name">Intensiv-Haarkur</h3>
+              <p class="service-desc">Aufbaupflege inklusive entspannender Kopfmassage</p>
+            </div>
+            <span class="service-price">12,00 €</span>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="salon-slider slide-forward">
+
+    <div class="salon-slide-track">
+
+        <article class="salon-slide salon-preview-left">
+
+            <div class="salon-panel salon-panel-warm">
+                <div class="salon-copy">
+
+                    <span class="salon-eyebrow">
+                        Dein Look. Dein Stil.
+                    </span>
+
+                    <h2>
+                        Haarschnitt mit Persönlichkeit
+                    </h2>
+
+                    <p>
+                        Wir kombinieren moderne Schnitte mit einer
+                        individuellen Beratung. Gemeinsam finden wir
+                        einen Look, der zu deinem Stil und deinem Alltag
+                        passt.
+                    </p>
+
+                    <button
+                        class="salon-action"
+                        onclick="document.getElementById('termin').scrollIntoView({ behavior: 'smooth' });">
+                        Termin anfragen
+                    </button>
+
+                </div>
+            </div>
+
+            <figure class="salon-picture">
+                <img
+                    src="img/images3.jpg"
+                    alt="Moderner Haarschnitt im Haarstudio">
+
+               
+            </figure>
+
+        </article>
+
+
+        <article class="salon-slide salon-active">
+
+            <div class="salon-panel salon-panel-rose">
+                <div class="salon-copy">
+
+                    <span class="salon-eyebrow">
+                        Farbe & Pflege
+                    </span>
+
+                    <h2>
+                        Strahlende Haarfarben
+                    </h2>
+
+                    <p>
+                        Ob natürliche Nuancen, sanfte Balayage oder
+                        eine komplette Typveränderung – wir nehmen uns
+                        Zeit für eine individuelle Farbbehandlung.
+                    </p>
+
+                    <button
+                        class="salon-action"
+                        onclick="document.getElementById('termin').scrollIntoView({ behavior: 'smooth' });">
+                        Termin anfragen
+                    </button>
+
+                </div>
+            </div>
+
+            <figure class="salon-picture">
+                <img
+                    src="img/images.jpg"
+                    alt="Professionelle Haarfarbe">
+
+               
+            </figure>
+
+        </article>
+
+
+        <article class="salon-slide salon-preview-right">
+
+            <div class="salon-panel salon-panel-sand">
+                <div class="salon-copy">
+
+                    <span class="salon-eyebrow">
+                        Beauty & Wohlfühlen
+                    </span>
+
+                    <h2>
+                        Zeit für dich
+                    </h2>
+
+                    <p>
+                        Bei uns geht es nicht nur um schöne Haare.
+                        Genieße eine entspannte Auszeit und lass dich
+                        professionell beraten und verwöhnen.
+                    </p>
+
+                    <button
+                        class="salon-action"
+                        onclick="document.getElementById('termin').scrollIntoView({ behavior: 'smooth' });">
+                        Termin anfragen
+                    </button>
+
+                </div>
+            </div>
+
+            <figure class="salon-picture">
+                <img
+                    src="img/images2.jpg"
+                    alt="Modernes Haarstudio">
+
+               
+            </figure>
+
+        </article>
+
+
+        <article class="salon-slide">
+
+            <div class="salon-panel salon-panel-dark">
+                <div class="salon-copy">
+
+                    <span class="salon-eyebrow">
+                        Beratung
+                    </span>
+
+                    <h2>
+                        Gemeinsam zum Wunschlook
+                    </h2>
+
+                    <p>
+                        Wir beraten dich persönlich und entwickeln
+                        gemeinsam eine Frisur, die zu deiner
+                        Persönlichkeit und deinem Typ passt.
+                    </p>
+
+                    <button
+                        class="salon-action"
+                        onclick="document.getElementById('termin').scrollIntoView({ behavior: 'smooth' });">
+                        Termin anfragen
+                    </button>
+
+                </div>
+            </div>
+
+            <figure class="salon-picture">
+                <img
+                    src="img/unnamed.jpg"
+                    alt="Beratung im Haarstudio">
+
+                
+            </figure>
+
+        </article>
+
+    </div>
+
+
+    <div class="salon-navigation">
+        <button id="salonPrev" aria-label="Vorheriger Inhalt">
+            ←
+        </button>
+
+        <button id="salonNext" aria-label="Nächster Inhalt">
+            →
+        </button>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- TEAM SECTION -->
+<section class="st-section" id="about" aria-labelledby="st-heading">
+  
+  <header class="st-header">
+    <h2 id="st-heading" class="st-header__title">Unser Team</h2>
+    <p class="st-header__subtitle">Handwerk, Ästhetik und Hingabe für deinen individuellen Stil.</p>
+  </header>
+
+  <ul class="st-grid">
+    
+    <!-- Reihe 1 -->
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-1-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-1-name" class="st-card__name">Elena V.</h3>
+          <p class="st-card__role">Master Stylistin</p>
+          <p class="st-card__bio">Spezialistin für Balayage und präzise Haarschnitte mit über 12 Jahren Erfahrung.</p>
+        </div>
+      </article>
+    </li>
+
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-2-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-2-name" class="st-card__name">Marco K.</h3>
+          <p class="st-card__role">Senior Colorist</p>
+          <p class="st-card__bio">Experte für kreative Farbkorrekturen, Blondnuancen und moderne Herren-Stylings.</p>
+        </div>
+      </article>
+    </li>
+
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-3-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-3-name" class="st-card__name">Sophie L.</h3>
+          <p class="st-card__role">Braut-Stylistin</p>
+          <p class="st-card__bio">Liebt Hochsteckfrisuren, Braut-Stylings und das perfekte Föhnergebnis.</p>
+        </div>
+      </article>
+    </li>
+
+    <!-- Reihe 2 -->
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-4-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-4-name" class="st-card__name">Laura M.</h3>
+          <p class="st-card__role">Color Stylistin</p>
+          <p class="st-card__bio">Spezialisiert auf sanfte Pastelltöne, Babylights und strukturierte Schnitte.</p>
+        </div>
+      </article>
+    </li>
+
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-5-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-5-name" class="st-card__name">David S.</h3>
+          <p class="st-card__role">Barber &amp; Stylist</p>
+          <p class="st-card__bio">Präzisionshaarschnitte, klassische Rasur und moderne Barber-Techniken.</p>
+        </div>
+      </article>
+    </li>
+
+    <li class="st-grid__item">
+      <article class="st-card" aria-labelledby="st-member-6-name">
+        <div class="st-card__media" aria-hidden="true">
+          <svg class="st-card__avatar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="st-card__content">
+          <h3 id="st-member-6-name" class="st-card__name">Nina T.</h3>
+          <p class="st-card__role">Junior Stylistin</p>
+          <p class="st-card__bio">Bringt frischen Wind, Trends aus Social Media und Leidenschaft für Blow-Dry mit.</p>
+        </div>
+      </article>
+    </li>
+
+  </ul>
+</section>
+
+
+
+
+
+
+<section class="testimonial-section">
+  <div class="testimonial-header">
+    <h2 class="testimonial-title">Das sagen unsere Kunden</h2>
+    <p class="testimonial-subtitle">Echte Google-Bewertungen für Melly's Haarstudio</p>
+  </div>
+
+  <div class="slider-container" id="reviewsSlider">
+    <button class="slider-btn prev-btn" aria-label="Vorherige Bewertung">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+
+    <div class="slider-wrapper">
+      <div class="slider-track">
+        
+        <!-- Karte 1 -->
+        <article class="review-card">
+          <div class="card-header">
+            <div class="author-info">
+              <span class="author-avatar">MK</span>
+              <div>
+                <h3 class="author-name">Matthias Kroll</h3>
+                <span class="review-meta">Vor 3 Jahren auf Google</span>
+              </div>
+            </div>
+            <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">„Bin schon seit Jahren Kunde und nach jedem Frisör Besuch begeistert. Sehr nettes und kompetentes Team. Am Ende sehen meine Haare immer so aus, wie ich es mir vorgestellt habe, macht weiter so!“</p>
+        </article>
+
+        <!-- Karte 2 -->
+        <article class="review-card">
+          <div class="card-header">
+            <div class="author-info">
+              <span class="author-avatar">GT</span>
+              <div>
+                <h3 class="author-name">Gudrun Thomall</h3>
+                <span class="review-meta">Vor 1 Jahr auf Google</span>
+              </div>
+            </div>
+            <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">„Ich bin sehr zufrieden. Alle sind sehr freundlich. Ich lasse mir die Haare von Diana färben und schneiden und das macht sie super. Ich kann Melly's Haarstudio wärmstens empfehlen, und freue mich schon auf den nächsten Besuch.“</p>
+        </article>
+
+        <!-- Karte 3 -->
+        <article class="review-card">
+          <div class="card-header">
+            <div class="author-info">
+              <span class="author-avatar">CN</span>
+              <div>
+                <h3 class="author-name">Cindy Noack</h3>
+                <span class="review-meta">Vor 4 Jahren · 3 Rezensionen</span>
+              </div>
+            </div>
+            <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">„Ich lasse mir meine Haare von Susanne schneiden und färben und kann sie und Mellis Haarstudio wirklich sehr empfehlen. Ich schätze die freundliche Atmosphäre, die Professionalität und die sehr gute Beratung. Ich bin froh, dass ich einen so guten Friseursalon in meiner Nähe habe. :-)“</p>
+        </article>
+
+        <!-- Karte 4 -->
+        <article class="review-card">
+          <div class="card-header">
+            <div class="author-info">
+              <span class="author-avatar">BI</span>
+              <div>
+                <h3 class="author-name">Boisen Immobilien</h3>
+                <span class="review-meta">Local Guide · 83 Rezensionen</span>
+              </div>
+            </div>
+            <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">„Bei Melli bekommt man als Mann auch mal spontan zwischendurch einen Termin für einen Trockenhaarschnitt. Melli ist schon über 10 Jahre in Hohnstorf mit ihrem Friseursalon.“</p>
+        </article>
+
+        <!-- Karte 5 -->
+        <article class="review-card">
+          <div class="card-header">
+            <div class="author-info">
+              <span class="author-avatar">MK</span>
+              <div>
+                <h3 class="author-name">Monja K</h3>
+                <span class="review-meta">Vor 2 Jahren · 6 Rezensionen</span>
+              </div>
+            </div>
+            <svg class="google-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+          </div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">„Noch nie war ich so begeistert, wenn ich 'nen Friseur verlassen habe. Gilt auch für meinen Mann!“</p>
+        </article>
+
+      </div>
+    </div>
+
+    <button class="slider-btn next-btn" aria-label="Nächste Bewertung">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+
+  <div class="slider-nav-footer">
+  <!-- Counter Badge -->
+  <div class="counter-badge">
+    <span class="current-slide" id="currentSlide">01</span>
+    <span class="counter-divider">/</span>
+    <span class="total-slides" id="totalSlides">05</span>
+  </div>
+
+  <!-- Progress Track (Fortschrittsanzeige) -->
+  <div class="progress-track" id="progressTrack" role="tablist" aria-label="Bewertung auswählen"></div>
+
+  <!-- Seriöses Google Trust Badge -->
+  <a href="https://www.google.com/maps/search/?api=1&query=Mellis+Haarstudio+Hohnstorf" target="_blank" rel="noopener noreferrer" class="google-trust-badge" title="Alle Bewertungen auf Google lesen">
+    <!-- Original Google G-Logo als SVG -->
+    <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+    </svg>
+
+    <div class="badge-content">
+      <div class="badge-top">
+        <span class="badge-rating">4.9</span>
+        <span class="badge-stars">★★★★★</span>
+      </div>
+      <span class="badge-text">120+ Verifizierte Google-Bewertungen <span class="external-arrow">↗</span></span>
+    </div>
+  </a>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- CUT SECTION WRAPPER (Für den Sticky-Effekt) -->
+<div class="cut-viewport-wrapper" id="cutWrapper">
+  <section class="cut-sticky-section" id="cutSection">
+    
+    <!-- Dahinter liegender Inhalt -->
+    <div class="cut-content">
+      <span class="cut-tagline">Dein Style-Upgrade</span>
+      <h2>Zeit für eine Veränderung?</h2>
+      <p>Wir schneiden alte Zöpfe ab. Erlebe präzises Handwerk, moderne Schnitte und deinen ganz persönlichen Wohlfühl-Look.</p>
+    </div>
+
+    <!-- Oberes weißes Papierblatt -->
+    <div class="paper-half paper-top" id="paperTop"></div>
+    
+    <!-- Unteres weißes Papierblatt -->
+    <div class="paper-half paper-bottom" id="paperBottom"></div>
+
+    <!-- Interaktive SVG-Schere mit beweglichen Klingen -->
+    <div class="scissors-container" id="scissors" aria-hidden="true">
+      <svg class="scissors-svg" viewBox="0 0 100 100">
+        <!-- Obere Klinge + Griff -->
+        <g class="blade-top">
+          <circle cx="20" cy="35" r="10" fill="none" stroke="currentColor" stroke-width="4"/>
+          <path d="M28 39 L75 48 L40 50 Z" fill="currentColor"/>
+        </g>
+        <!-- Untere Klinge + Griff -->
+        <g class="blade-bottom">
+          <circle cx="20" cy="65" r="10" fill="none" stroke="currentColor" stroke-width="4"/>
+          <path d="M28 61 L75 52 L40 50 Z" fill="currentColor"/>
+        </g>
+        <!-- Schraube / Drehpunkt -->
+        <circle cx="40" cy="50" r="2.5" fill="var(--clr-white, #fff)"/>
+      </svg>
+    </div>
+
+  </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="booking-section" id="termin">
+  <div class="booking-container">
+    <div class="booking-header">
+      <h2 class="booking-title">Termin anfragen</h2>
+      <p class="booking-subtitle">Wähle deinen Wunschtermin. Wir bestätigen dir deine Anfrage so schnell wie möglich.</p>
+    </div>
+
+    <form id="bookingForm" action="send-mail.php" method="POST" class="booking-form" novalidate>
+      
+      <!-- Honeypot als Spam-Schutz (für Bots unsichtbar) -->
+      <div class="form-hp" aria-hidden="true">
+        <input type="text" name="website_hp" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-grid">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required>
+        </div>
+
+        <!-- Telefon -->
+        <div class="form-group">
+          <label for="phone">Telefonnummer *</label>
+          <input type="tel" id="phone" name="phone" placeholder="Für Rückfragen zum Termin" required>
+        </div>
+
+        <!-- E-Mail -->
+        <div class="form-group">
+          <label for="email">E-Mail-Adresse *</label>
+          <input type="email" id="email" name="email" placeholder="deine@adresse.de" required>
+        </div>
+
+        <!-- Leistungsauswahl -->
+        <div class="form-group">
+          <label for="service">Gewünschte Leistung *</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Bitte wählen...</option>
+            <optgroup label="Damen">
+              <option value="Damen - Waschen, Schneiden, Föhnen">Waschen, Schneiden, Föhnen</option>
+              <option value="Damen - Waschen & Föhnen">Waschen & Föhnen</option>
+              <option value="Damen - Hochsteckfrisur / Event">Hochsteckfrisur / Event-Styling</option>
+            </optgroup>
+            <optgroup label="Herren">
+              <option value="Herren - Schnitt Komplett">Herrenschnitt Komplett</option>
+              <option value="Herren - Trockenschnitt">Trockenschnitt</option>
+              <option value="Herren - Bartpflege">Bartpflege & Konturen</option>
+            </optgroup>
+            <optgroup label="Farbe & Pflege">
+              <option value="Farbe - Ansatz">Ansatzfarbe</option>
+              <option value="Farbe - komplett">Farbe komplett</option>
+              <option value="Farbe - Strähnen / Balayage">Strähnen / Balayage</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Datum -->
+        <div class="form-group">
+          <label for="date">Wunschdatum *</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <!-- Uhrzeit -->
+        <div class="form-group">
+          <label for="time">Bevorzugte Uhrzeit *</label>
+          <select id="time" name="time" required>
+            <option value="" disabled selected>Uhrzeit wählen...</option>
+            <option value="Vormittags (09:00 - 12:00)">Vormittags (09:00 - 12:00 Uhr)</option>
+            <option value="Mittags (12:00 - 15:00)">Mittags (12:00 - 15:00 Uhr)</option>
+            <option value="Nachmittags (15:00 - 18:00)">Nachmittags (15:00 - 18:00 Uhr)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Anmerkungen -->
+      <div class="form-group form-group-full">
+        <label for="message">Anmerkungen / Wünsche</label>
+        <textarea id="message" name="message" rows="4" placeholder="Z. B. Besonderheiten zu deinen Haaren oder ob du eine bestimmte Kollegin wünschst..."></textarea>
+      </div>
+
+      <!-- Datenschutz Checkbox -->
+      <div class="form-group form-group-full form-checkbox">
+        <label class="checkbox-label">
+          <input type="checkbox" name="privacy" id="privacy" required>
+          <span>Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. (<a href="/datenschutz" target="_blank">Datenschutz</a>)</span>
+        </label>
+      </div>
+
+      <!-- Submit Button & Feedback Status -->
+      <div class="form-footer">
+        <button type="submit" id="submitBtn" class="booking-submit-btn">
+          <span>Terminanfrage absenden</span>
+        </button>
+        <div id="formResponse" class="form-response" aria-live="polite"></div>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-container">
+
+    <!-- Spalte 1: Brand, Bewertung & Telefon -->
+    <div class="footer-col footer-brand">
+      <a href="/" class="footer-logo-link" aria-label="Mellis Haarstudio Startseite">
+        <span class="footer-logo">Mellis Haarstudio</span>
+      </a>
+      <p class="footer-owner">Inh. Melanie Diedrich</p>
+
+      <div class="footer-rating-badge" aria-label="Bewertung: 4,9 Sternen aus 64 Rezensionen">
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        <span class="rating-score">4,9</span>
+        <span class="rating-count">(64 Rezensionen)</span>
+      </div>
+
+      <div class="footer-brand-contact">
+        <a href="tel:04139799477" class="footer-phone-link">
+          <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>04139 799477</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Spalte 2: Navigation -->
+    <div class="footer-col">
+      <h3 class="footer-title">Navigation</h3>
+      <nav aria-label="Footer Navigation">
+        <ul class="footer-nav">
+          <li><a href="/" class="footer-link">Home</a></li>
+          <li><a href="#leistungen" class="footer-link">Leistungen</a></li>
+          <li><a href="#ueber-uns" class="footer-link">Über uns</a></li>
+          <li><a href="#kontakt" class="footer-link">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Spalte 3: Alle Öffnungszeiten & Adresse -->
+    <div class="footer-col">
+      <h3 class="footer-title">Öffnungszeiten</h3>
+      <ul class="footer-hours-list">
+        <li><span>Di, Mi, Fr:</span> 09:00 – 18:00</li>
+        <li><span>Donnerstag:</span> 09:00 – 19:00</li>
+        <li><span>Samstag:</span> 08:00 – 13:00</li>
+        <li class="hours-closed"><span>So & Mo:</span> Geschlossen</li>
+      </ul>
+      <address class="footer-address">
+        Adolf-Lüchau-Weg 1<br>
+        21522 Hohnstorf (Elbe)
+      </address>
+    </div>
+
+    <!-- Spalte 4: Quick Actions -->
+    <div class="footer-col footer-action-col">
+      <h3 class="footer-title">Service & Anfahrt</h3>
+      <div class="footer-btn-group">
+        <a href="#termin" class="footer-btn">
+          <span>Termin buchen</span>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+
+        <a href="https://maps.google.com/?q=Adolf-Lüchau-Weg+1,+21522+Hohnstorf+(Elbe)" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-secondary">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Route planen</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+<!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      
+      <p class="footer-copyright">&copy; 2026 Mellis Haarstudio. Alle Rechte vorbehalten.</p>
+
+      <nav aria-label="Rechtliche Links">
+        <ul class="footer-legal">
+          <li><a href="/impressum" class="footer-legal-link">Impressum</a></li>
+          <li class="legal-separator" aria-hidden="true">&bull;</li>
+          <li><a href="/datenschutz" class="footer-legal-link">Datenschutz</a></li>
+        </ul>
+      </nav>
+
+      <!-- Creator Tag Unten Rechts -->
+      <div class="footer-bottom-right">
+        <div class="creator-tag" aria-label="Erstellt von Struß">
+          <span>Made by</span>
+          <strong>Struß</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Biegbarer Schriftzug -->
+  <div class="curved-text-wrapper" aria-hidden="true">
+    <div class="curved-text" id="curvedText">
+      <span>M</span><span>E</span><span>L</span><span>L</span><span>I</span><span>S</span>
+      <span class="space">&nbsp;</span>
+      <span>H</span><span>A</span><span>A</span><span>R</span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
+      <span class="dot">&bull;</span>
+      <span>H</span><span>O</span><span>H</span><span>N</span><span>S</span><span>T</span><span>O</span><span>R</span><span>F</span>
+    </div>
+  </div>
+</footer>
+</footer>
+
+
+
+
+
+
+<script src="js/app.js" defer></script>
+<script type="module" src="js/navbar.js" defer></script>
+<script type="module" src="js/leistungen.js" defer></script>
+<script type="module" src="js/bewertungen.js" defer></script>
+<script type="module" src="js/schere.js" defer></script>
+<script type="module" src="js/footer.js" defer></script>
+
+</body>
+
+
+
+
+
+
+
+</html>
